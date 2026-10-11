@@ -1,28 +1,66 @@
-# Chapter 12: Capstone and Monetization Launch
+# Chapter 12 — Capstone and Monetization Launch
 
-## Three-hour launch challenge
+## Outcome
 
-1. **0:00–0:30 — Scope:** choose one measurable customer outcome, define the target user, and freeze the launch branch.
-2. **0:30–1:15 — Build:** configure the production environment, database migrations, health checks, and one end-to-end user path.
-3. **1:15–2:00 — Verify:** run tests, concurrency checks, security headers, backup/restore rehearsal, and a manual smoke test on mobile.
-4. **2:00–2:30 — Package:** publish the landing page, pricing, case-study proof, support route, and an incident contact.
-5. **2:30–3:00 — Launch:** deploy, verify DNS/TLS, monitor error rates, and announce only after rollback is confirmed.
+You will deliver a complete AI-assisted software product: define the customer, scaffold it, add an AI capability, persist state, build the frontend, secure the API, test races, deploy it, connect DNS, and package the result as a corporate service.
 
-## Corporate packages
+## 1. Three-hour capstone schedule
 
-| Package | Price | Scope |
-|---|---:|---|
-| Architecture audit | $1,000 | Two-hour audit, risk register, prioritized remediation plan |
-| Guided implementation | $2,500 | Audit plus one production workflow and team handoff |
-| Launch system | $5,000 | Architecture, CI/CD, observability, security review, and launch support |
+### 00:00–00:20 — Define the product
 
-Quote assumptions explicitly: number of environments, integrations, data migration, response-time SLA, training seats, and post-launch support. Use milestone billing and do not promise outcomes that depend on customer-owned systems.
+Write a one-page brief: user, painful workflow, measurable outcome, non-goals, data classification, AI role, success metric, and launch risk. Choose one vertical slice, not a platform.
 
-## Audit guide
+### 00:20–00:50 — Bootstrap
 
-Collect architecture diagrams, data-flow boundaries, credential ownership, dependency reports, backup evidence, deployment history, and incident logs. Rate each finding by impact, likelihood, exploitability, and remediation cost. Retest every critical finding before sign-off.
+```bash
+pnpm create vite capstone-web --template react-ts
+pnpm create hono capstone-api
+git switch -c feat/capstone-launch
+pnpm install --frozen-lockfile
+```
 
-## Consulting landing page model
+Create `.env.example`, add provider/database contracts, and commit the clean baseline.
 
-Lead with the operational outcome, show a short proof point, explain the bounded delivery method, publish package anchors, answer security and ownership objections, and end with one qualified-call CTA. Capture only the information needed to scope the engagement; never request credentials in a marketing form.
+### 00:50–01:30 — Build the vertical slice
 
+Implement one authenticated flow from form input to validated API request, database write, AI-assisted result, and rendered response. Add loading, empty, error, retry, and offline states. Use the Chapter 02 gateway instead of calling a provider directly from React.
+
+### 01:30–02:00 — Harden and verify
+
+```bash
+pnpm run lint
+pnpm run typecheck
+pnpm run test
+pnpm run test:concurrency
+pnpm audit --audit-level=high
+```
+
+Inspect headers, rate limits, tenant boundaries, logs, secret exposure, backup evidence, and rollback procedure.
+
+### 02:00–02:30 — Deploy
+
+Build the Docker image, deploy the API, deploy the frontend, configure secrets, run migrations, and execute smoke tests. Do not paste production keys into an agent chat.
+
+### 02:30–03:00 — Launch and sell
+
+Connect DNS, verify TLS, publish the landing page, record the release SHA, set monitoring alerts, and send the first qualified outreach message. Keep a rollback window open.
+
+## 2. Corporate package templates
+
+| Package | Price | Deliverables | Timeline |
+|---|---:|---|---|
+| Architecture Audit | $1,000 | system map, risk register, 90-day plan, executive readout | 3–5 days |
+| AI Product Sprint | $2,500 | vertical slice, provider gateway, data model, test plan, handoff | 1–2 weeks |
+| Production Launch System | $5,000 | architecture, implementation, CI/CD, security review, observability, launch support | 2–4 weeks |
+
+Specify assumptions for environments, integrations, data migration, seats, support hours, response times, and customer-owned dependencies. Use 50/50 or milestone billing, define change control, and exclude unbounded “make it production-ready” language.
+
+## 3. System audit guide
+
+Request architecture and data-flow diagrams, dependency inventory, credentials ownership, backup/restore evidence, deployment history, incident records, access list, retention policy, and vendor contracts. Grade each finding by impact, likelihood, exploitability, evidence quality, and remediation cost. Retest critical findings and obtain written acceptance for residual risk.
+
+## 4. Consulting landing page conversion model
+
+Hero: measurable outcome for a specific buyer. Proof: before/after metric or concrete artifact. Method: bounded phases and decision points. Offer: three packages with clear exclusions. Risk reversal: defined acceptance criteria and rollback. CTA: one qualification form asking only role, workflow, current stack, timeline, and budget range.
+
+Do not claim guaranteed revenue, hide AI data handling, or request credentials through the marketing form. A credible launch offer sells reduced delivery risk and a verifiable operating system.
