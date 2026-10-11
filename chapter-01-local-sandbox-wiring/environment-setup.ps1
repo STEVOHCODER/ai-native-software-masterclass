@@ -1,12 +1,16 @@
 [CmdletBinding()]
 param(
+    # Apply the safer user-scoped policy only when the learner explicitly requests it.
     [switch]$ApplyUserPolicy,
+    # Emit machine-readable JSON for CI and setup scripts instead of a human table.
     [switch]$Json
 )
 
+# Require variables to be declared and stop on the first unexpected failure.
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+# Resolve one executable without turning an optional tool into a fatal error.
 function Get-CommandPath {
     param([Parameter(Mandatory)][string]$Name)
     $command = Get-Command $Name -ErrorAction SilentlyContinue
@@ -14,11 +18,14 @@ function Get-CommandPath {
     return $command.Source
 }
 
+# Change only the current user's execution policy when explicitly requested.
 if ($ApplyUserPolicy) {
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
 }
 
+# Capture the protocol setting currently visible to this PowerShell process.
 $tls = [Net.ServicePointManager]::SecurityProtocol
+# Build one structured audit record so every platform reports the same fields.
 $report = [ordered]@{
     ComputerName = $env:COMPUTERNAME
     PowerShell = $PSVersionTable.PSVersion.ToString()
@@ -40,6 +47,7 @@ $report = [ordered]@{
     PathEntries = ($env:Path -split ';' | Where-Object { $_ -and (Test-Path $_) })
 }
 
+# Select JSON for automation or readable key/value output for a learner.
 if ($Json) {
     $report | ConvertTo-Json -Depth 4
 } else {
