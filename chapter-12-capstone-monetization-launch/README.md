@@ -72,3 +72,7 @@ The capstone team may assign agents to research, scaffold, implement, test, docu
 ## 6. Buyer-facing technical handoff
 
 Deliver an architecture diagram, environment matrix, runbook, threat model, data-retention statement, dependency inventory, backup evidence, CI status, deployment SHA, support boundary, and a recorded walkthrough. The buyer should be able to operate the system without access to the builder's personal accounts.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to deliver the cumulative product. The brief fields and release commands are annotated with their purpose; [`EXPLAINED.md`](EXPLAINED.md) explains how the evidence proves the capstone works.

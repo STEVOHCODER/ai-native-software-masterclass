@@ -76,3 +76,31 @@ If the scope cannot be completed in three hours, cut features rather than qualit
 
 The learner can explain the architecture, reproduce the setup, show the agent's contribution and review trail, demonstrate the product, prove the important failure modes, and hand the system to another operator.
 
+## Command annotations: what and why
+
+```bash
+git switch -c feat/capstone-launch                       # Isolate the final product work from main.
+pnpm install --frozen-lockfile                            # Recreate the exact dependency graph before implementation.
+git diff --check                                          # Catch whitespace errors after each vertical slice.
+pnpm run typecheck                                        # Prove strict TypeScript contracts remain valid.
+pnpm run lint                                             # Prove static quality and repository conventions remain valid.
+pnpm run test                                             # Execute the automated behavior suite.
+```
+
+The capstone commands are repeated after each slice so a failure is attributed to a small change. This is faster and safer than waiting until deployment to discover which layer broke.
+
+```text
+Product:                         # Names the system the agent is expected to build.
+Primary user:                    # Identifies who receives the value.
+Painful workflow:                # Defines the problem rather than a vague feature list.
+One measurable outcome:           # Sets the acceptance metric.
+AI operation:                     # States where the model is used and what it must return.
+Persistent entities:              # Identifies data that must survive a restart.
+Security/data classification:     # Determines credential, privacy, and retention requirements.
+Non-goals:                        # Prevents the agent from expanding scope.
+Acceptance tests:                 # Converts the brief into verifiable behavior.
+Deployment target:                # Names the environment to configure.
+Rollback target:                  # Defines how to recover from a failed release.
+```
+
+The brief is configuration for the agent and the human team: every field prevents a different class of ambiguity. The final evidence commands and records prove delivery rather than merely producing source files.
