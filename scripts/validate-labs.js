@@ -29,6 +29,10 @@ for (const chapter of chapters) {
   const content = fs.readFileSync(file, 'utf8');
   const missing = requiredSections.filter((section) => !content.includes(section));
   if (missing.length) throw new Error(`${chapter.name} is missing: ${missing.join(', ')}`);
+  const explanationFile = path.join(root, chapter.name, 'EXPLAINED.md');
+  if (!fs.existsSync(explanationFile)) throw new Error(`${chapter.name} is missing EXPLAINED.md`);
+  const explanation = fs.readFileSync(explanationFile, 'utf8');
+  if (!explanation.startsWith('# ')) throw new Error(`${chapter.name}/EXPLAINED.md needs a title heading`);
 }
 
 process.stdout.write(`Validated practical lab contract for ${chapters.length} chapters.\n`);
