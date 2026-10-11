@@ -63,3 +63,24 @@ Check nameservers, proxy mode, origin certificate, stale TTL, and host headers. 
 
 The learner can export current DNS, make one reversible change, verify DNS/TLS/HTTP behavior, and restore the prior record set if required.
 
+## Command annotations: what and why
+
+```powershell
+winget install Cloudflare.cloudflared                       # Install Cloudflare's tunnel/DNS diagnostic CLI.
+Resolve-DnsName example.com                                 # Ask Windows DNS resolution for the public record.
+Resolve-DnsName api.example.com                             # Verify the API hostname separately from the frontend.
+Test-NetConnection api.example.com -Port 443               # Confirm TCP reachability to the HTTPS port.
+```
+
+```bash
+brew install cloudflared                                   # Install the Cloudflare CLI through Homebrew.
+cloudflared tunnel login                                   # Open the authenticated Cloudflare browser flow.
+cloudflared tunnel list                                    # Prove the CLI can read the account's tunnel inventory.
+dig +short example.com                                     # Print only the resolved apex address.
+dig +short api.example.com                                 # Print only the API hostname target.
+curl --fail --silent --show-error https://api.example.com/health # Prove the public edge route reaches the API.
+curl --head --location https://example.com                  # Inspect redirects and response headers without downloading the body.
+openssl s_client -connect example.com:443 -servername example.com </dev/null 2>/dev/null | openssl x509 -noout -dates # Read certificate validity dates from the negotiated TLS connection.
+```
+
+The DNS commands prove name resolution, the network command proves port reachability, and the HTTPS commands prove the edge/origin chain. These are separate checks because a DNS record can resolve while TLS or the application still fails.

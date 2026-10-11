@@ -80,3 +80,7 @@ Test-NetConnection api.example.com -Port 443
 ```
 
 Have an agent generate a DNS change plan, but require a human to compare it with the intended records before applying it.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) for reversible DNS, TLS, and edge verification. Each command is annotated with the layer it proves; [`EXPLAINED.md`](EXPLAINED.md) explains proxying and cache decisions.
