@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.next/
+.turbo/
+.venv/
+.env
+.env.*
+!.env.example
+*.log
+*.dump
+*.archive
+.DS_Store
+Thumbs.db
+

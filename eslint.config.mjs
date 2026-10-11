@@ -1,0 +1,22 @@
+export default [
+  {
+    ignores: ['node_modules/**', 'dist/**', 'coverage/**'],
+    files: ['**/*.js'],
+    languageOptions: {
+      globals: {
+        __dirname: 'readonly',
+        console: 'readonly',
+        module: 'readonly',
+        process: 'readonly',
+        require: 'readonly',
+        setInterval: 'readonly'
+      }
+    },
+    rules: {
+      'no-undef': 'error',
+      'no-unused-vars': ['error', { args: 'none' }],
+      'no-console': 'off',
+      'no-process-exit': 'off'
+    }
+  }
+];

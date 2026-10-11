@@ -1,12 +1,20 @@
 {
   "name": "masterclass-hub",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "commonjs",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
+    "start": "node chapter-08-backend-pipelines-concurrency/server.js",
+    "lint": "eslint chapter-04-git-version-control-safety chapter-08-backend-pipelines-concurrency chapter-09-automated-verification-testing scripts --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test chapter-09-automated-verification-testing/*.test.js",
+    "build": "tsc --noEmit",
+    "validate:environment": "node scripts/validate-environment.js",
+    "security:audit": "npm audit --audit-level=high",
+    "self-correct": "node chapter-09-automated-verification-testing/self-correct.js",
     "test:concurrency": "node --test chapter-09-automated-verification-testing/concurrency.test.js",
     "checkpoint": "node chapter-04-git-version-control-safety/agent-safety-commit.js --once"
   },
@@ -18,9 +26,10 @@
     "@types/express": "^5.0.3",
     "@types/node": "^22.15.0",
     "@types/react": "^19.1.2",
+    "eslint": "^9.24.0",
     "mongoose": "^8.13.2",
     "react": "^19.1.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
 }
-

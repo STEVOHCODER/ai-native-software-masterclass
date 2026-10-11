@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM"],
+    "types": ["node", "react"]
+  },
+  "include": [
+    "chapter-02-api-infrastructure-gateways/**/*.ts",
+    "chapter-05-database-architecture-state/**/*.ts",
+    "chapter-06-frontend-scaffolding-design/**/*.tsx",
+    "chapter-07-mcp-extensions-custom-skills/**/*.ts"
+  ]
+}
