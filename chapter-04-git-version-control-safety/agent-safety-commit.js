@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 
-const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
@@ -36,4 +35,3 @@ else {
   process.stdout.write(`Watching ${repository} every ${intervalMs}ms\n`);
   setInterval(checkpoint, intervalMs);
 }
-
