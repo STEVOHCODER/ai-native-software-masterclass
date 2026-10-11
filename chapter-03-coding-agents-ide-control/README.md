@@ -72,6 +72,10 @@ git status --short
 
 Reject any agent output that lacks a test result, introduces an unreviewed dependency, or changes files outside the task boundary.
 
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to install and direct an agent on a bounded task. Commands are annotated beside the command they explain; [`EXPLAINED.md`](EXPLAINED.md) explains the configuration and delegation flow.
+
 ## 6. Installation matrix
 
 | Agent | Windows | macOS/Linux | Editor/Desktop |
