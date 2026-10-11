@@ -97,3 +97,7 @@ Use `npm`, `pnpm`, or `bun` consistently within one deployment. Do not let an ag
 ## 7. Database and AI agent boundaries
 
 The API is the policy enforcement point. An AI agent can generate a migration or provider call, but it must invoke the same authenticated service boundary as the product. Never give a frontend MCP tool direct write access to Postgres, MongoDB, Stripe, or DNS.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to exercise the backend, invalid requests, and optimistic locking. Every shell command is annotated with its HTTP/security purpose; [`EXPLAINED.md`](EXPLAINED.md) explains the request pipeline.
