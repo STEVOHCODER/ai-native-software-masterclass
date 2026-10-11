@@ -95,3 +95,38 @@ node --input-type=module -e "const u=new URL('https://api.openai.com/v1/chat/com
 
 The learner can switch provider by changing the typed request and environment variable, can demonstrate safe missing-key behavior, and can show a passing type check without exposing credentials.
 
+## Command annotations: what and why
+
+```bash
+pnpm install --frozen-lockfile                            # Install the repository's pinned dependencies without changing the lockfile.
+pnpm add @anthropic-ai/sdk openai @google/generative-ai   # Add official provider SDKs when the lesson needs native features.
+pnpm add --save-dev tsx                                   # Install the TypeScript execution tool used for short gateway probes.
+cp .env.example .env                                      # Create a private local environment file from the safe template.
+```
+
+```powershell
+Copy-Item .env.example .env                               # Copy the environment template on Windows.
+notepad .env                                               # Open the actual project secret file for manual editing.
+```
+
+The install commands prepare tooling; the copy commands create the real file the application reads. `.env` is ignored by Git and must contain development keys only.
+
+```bash
+env -u OPENAI_API_KEY pnpm exec tsx -e "..."              # Remove one key for this process and prove missing-key validation.
+pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'Return exactly the word READY'}]},{maxAttempts:1}).then(r => console.log(r.text)).catch(e => { console.error(e.message); process.exit(1) })" # Execute one bounded live gateway request.
+```
+
+```powershell
+$env:OPENAI_API_KEY = $null                               # Remove the key only from the current PowerShell process.
+pnpm exec tsx -e "..."                                    # Run the same missing-key check through Windows' shell.
+```
+
+The first probe must fail before networking; the second is the paid/external operation and is run only with explicit credentials.
+
+```bash
+pnpm run typecheck                                        # Verify provider adapters satisfy strict TypeScript contracts.
+pnpm run lint                                             # Detect unsafe or inconsistent JavaScript/TypeScript patterns.
+node --input-type=module -e "const u=new URL('https://api.openai.com/v1/chat/completions'); console.log(u.origin+u.pathname)" # Parse and print the intended endpoint before a live call.
+```
+
+The verification commands separate compile-time correctness, style/static correctness, and endpoint inspection.

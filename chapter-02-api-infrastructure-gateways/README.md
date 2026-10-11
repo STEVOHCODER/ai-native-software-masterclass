@@ -72,6 +72,10 @@ pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gate
 - Use a queue for long-running generations.
 - Verify a fallback model explicitly; “fallback” must not silently change safety or data residency requirements.
 
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) for the provider gateway exercise. Each command block includes inline explanations and a follow-up description of its purpose; [`EXPLAINED.md`](EXPLAINED.md) explains the TypeScript sections and configuration design.
+
 ## 6. Configuration locations
 
 Use `.env` for application secrets, a user-level CLI profile for developer defaults, and a checked-in provider-neutral TOML file for non-secret routing policy:
