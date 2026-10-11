@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/continue-config.json",
+  "name": "Masterclass Hub",
+  "version": "1.0.0",
+  "models": [
+    {
+      "name": "Cloud Router",
+      "provider": "openai",
+      "model": "gpt-4.1-mini",
+      "apiKey": "${OPENAI_API_KEY}",
+      "roles": ["chat", "edit", "apply"]
+    },
+    {
+      "name": "Local Code Model",
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "apiBase": "http://127.0.0.1:11434",
+      "roles": ["chat", "edit"]
+    }
+  ],
+  "embeddingsProvider": {
+    "provider": "ollama",
+    "model": "nomic-embed-text",
+    "apiBase": "http://127.0.0.1:11434"
+  },
+  "context": [
+    { "provider": "code", "params": { "nRetrieve": 20, "nFinal": 8 } },
+    { "provider": "file", "params": { "maxLines": 400 } },
+    { "provider": "terminal", "params": { "timeout": 10000 } }
+  ],
+  "slashCommands": [
+    { "name": "test", "description": "Run the narrowest relevant test suite" },
+    { "name": "review", "description": "Review the current diff for correctness and security" }
+  ],
+  "docs": [
+    { "name": "TypeScript", "startUrl": "https://www.typescriptlang.org/docs/" },
+    { "name": "Express", "startUrl": "https://expressjs.com/en/guide/" }
+  ]
+}
+
