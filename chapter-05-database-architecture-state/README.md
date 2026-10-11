@@ -71,3 +71,77 @@ mongodump --uri "$MONGODB_URI" --archive=telemetry.archive
 
 Test restore into a separate database. Record recovery point objective, recovery time objective, backup owner, encryption status, and last restore date.
 
+## 6. CLI installation and MCP connectivity
+
+Supabase CLI options:
+
+```powershell
+winget install Supabase.CLI
+scoop install supabase
+```
+
+```bash
+brew install supabase/tap/supabase
+npx supabase --version
+```
+
+Authenticate without putting a token in shell history:
+
+```powershell
+$env:SUPABASE_ACCESS_TOKEN = Read-Host 'Supabase token'
+supabase login
+supabase link --project-ref <project-ref>
+supabase db push
+```
+
+```bash
+read -rsp 'Supabase token: ' SUPABASE_ACCESS_TOKEN; export SUPABASE_ACCESS_TOKEN; echo
+supabase link --project-ref <project-ref>
+supabase db push
+```
+
+MongoDB tools:
+
+```powershell
+winget install MongoDB.Server MongoDB.Shell
+```
+
+```bash
+brew install mongosh mongodb-atlas
+mongosh "$MONGODB_URI"
+atlas auth login
+atlas projects list
+```
+
+Use `supabase db diff`, `supabase db lint`, `mongosh`, and `atlas` from an agent only in a sandbox project. Production migration and backup commands require an explicit approval gate.
+
+## 7. Database MCP pattern
+
+Connect an agent to a **read-only** database MCP server first. The MCP configuration should reference an environment variable:
+
+```json
+{
+  "mcpServers": {
+    "supabase-readonly": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "${DATABASE_READONLY_URL}"],
+      "env": { "DATABASE_READONLY_URL": "${DATABASE_READONLY_URL}" }
+    }
+  }
+}
+```
+
+PowerShell registration for an agent that supports JSON configuration:
+
+```powershell
+$config = "$HOME\.continue\config.json"
+$json = Get-Content $config -Raw | ConvertFrom-Json
+$json | Add-Member -NotePropertyName mcpServers -NotePropertyValue ([pscustomobject]@{}) -Force
+$json.mcpServers | Add-Member -NotePropertyName supabase-readonly -NotePropertyValue ([pscustomobject]@{
+  command = 'npx'
+  args = @('-y', '@modelcontextprotocol/server-postgres', '${DATABASE_READONLY_URL}')
+}) -Force
+$json | ConvertTo-Json -Depth 20 | Set-Content $config
+```
+
+Never expose a service-role key to an MCP server used by an agent. Use a database role that can select only the tables needed for the lesson.
