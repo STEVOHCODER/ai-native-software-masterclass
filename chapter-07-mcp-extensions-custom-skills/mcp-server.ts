@@ -6,7 +6,9 @@ interface RpcRequest { readonly jsonrpc: '2.0'; readonly id?: number | string; r
 interface RpcResponse { readonly jsonrpc: '2.0'; readonly id: number | string | null; readonly result?: unknown; readonly error?: { code: number; message: string }; }
 const root = resolve(process.env.MCP_DOCS_ROOT || process.cwd());
 const allowed = (candidate: string): string => { const target = resolve(root, candidate); if (target !== root && !target.startsWith(`${root}${sep}`)) throw new Error('Path escapes documentation root'); return target; };
-const reply = (response: RpcResponse): void => process.stdout.write(`${JSON.stringify(response)}\n`);
+const reply = (response: RpcResponse): void => {
+  process.stdout.write(`${JSON.stringify(response)}\n`);
+};
 
 async function handle(request: RpcRequest): Promise<unknown> {
   if (request.method === 'initialize') return { protocolVersion: '2024-11-05', capabilities: { tools: {} }, serverInfo: { name: 'masterclass-hub', version: '1.0.0' } };
@@ -24,4 +26,3 @@ createInterface({ input: process.stdin, crlfDelay: Infinity }).on('line', async 
   try { const request = JSON.parse(line) as RpcRequest; reply({ jsonrpc: '2.0', id: request.id ?? null, result: await handle(request) }); }
   catch (error) { reply({ jsonrpc: '2.0', id: null, error: { code: -32000, message: error instanceof Error ? error.message : 'Request failed' } }); }
 });
-
