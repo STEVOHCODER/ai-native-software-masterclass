@@ -1,6 +1,49 @@
-# Chapter 09: Automated Verification Testing
+# Chapter 09 — Automated Verification and Testing
 
-Closed-loop agent development has four gates: deterministic unit tests, concurrency tests, type/lint checks, and a diagnostic feedback artifact. Tests must assert externally observable behavior, especially `409 Conflict` for stale versions, rather than inspecting implementation details.
+## Outcome
 
-Run `node --test concurrency.test.js`. `self-correct.js` runs the configured test command, captures stdout and stderr, writes a bounded diagnostic file, and exits non-zero when the suite fails so CI cannot silently accept a broken iteration.
+You will create a closed loop in which an AI coding agent can change code, run deterministic checks, receive bounded compiler/test diagnostics, and stop only when the acceptance criteria pass. The loop includes unit, integration, concurrency, accessibility, security, and build checks.
+
+## 1. Test layers
+
+| Layer | Question | Example |
+|---|---|---|
+| Unit | Does one function reject bad input? | sanitizer tests |
+| Integration | Does HTTP behavior match the contract? | health/progress route |
+| Concurrency | Does stale state lose safely? | three writers |
+| Contract | Does the frontend/backend shape agree? | OpenAPI or schema |
+| Security | Are headers, limits, and auth enforced? | malicious payload |
+| Build | Can a clean machine reproduce it? | frozen install/build |
+
+## 2. Run the gates
+
+```bash
+pnpm run lint
+pnpm run typecheck
+pnpm run test
+pnpm run test:concurrency
+pnpm run build
+pnpm run security:audit
+```
+
+Run the focused concurrency test directly while teaching:
+
+```bash
+node --test chapter-09-automated-verification-testing/concurrency.test.js
+```
+
+## 3. Three-user exercise
+
+The test creates three independent writers that all read version `0`, then submit opposing progress values. Exactly one update succeeds, two receive `409`, and the final version is `1`. This tests the race boundary instead of merely asserting a helper function's return value.
+
+Extend the lab with a fourth request using an invalid progress value, a malformed JSON request, a disallowed origin, an oversized body, and a payload containing HTML/control characters.
+
+## 4. Self-correction protocol
+
+```bash
+pnpm run self-correct
+Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail 80
+```
+
+`self-correct.js` captures both output streams, writes a bounded artifact, and exits non-zero so the agent cannot report success after a failing command. Do not allow an agent to automatically weaken tests, delete diagnostics, or loop indefinitely; set a maximum attempt count in the orchestrator.
 
