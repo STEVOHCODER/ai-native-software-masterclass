@@ -99,3 +99,45 @@ mongosh "$MONGODB_URI" --quiet --eval "db.telemetry.countDocuments({event:'lab.c
 
 The learner can start both services, apply the relational schema, insert/read telemetry, demonstrate RLS, and use an agent through a read-only database integration.
 
+## Command annotations: what and why
+
+```bash
+docker pull postgres:17-alpine                         # Download the pinned PostgreSQL image before creating a container.
+docker pull mongo:8                                    # Download the MongoDB image used for telemetry practice.
+docker run --name launchpad-postgres --detach --env POSTGRES_USER=launchpad --env POSTGRES_PASSWORD=local-only-password --env POSTGRES_DB=launchpad --publish 5432:5432 postgres:17-alpine # Start Postgres with local credentials, a stable name, and host port mapping.
+docker run --name launchpad-mongo --detach --publish 27017:27017 mongo:8 # Start MongoDB in the background and expose its development port.
+export DATABASE_URL=postgresql://launchpad:local-only-password@127.0.0.1:5432/launchpad # Tell CLI/tools where the local relational database is.
+export MONGODB_URI=mongodb://127.0.0.1:27017/launchpad # Tell CLI/tools where the local telemetry database is.
+```
+
+PowerShell uses the same container flags but stores environment variables in the current process:
+
+```powershell
+docker run --name launchpad-postgres --detach --env POSTGRES_USER=launchpad --env POSTGRES_PASSWORD=local-only-password --env POSTGRES_DB=launchpad --publish 5432:5432 postgres:17-alpine # Create the relational service.
+docker run --name launchpad-mongo --detach --publish 27017:27017 mongo:8 # Create the document service.
+$env:DATABASE_URL = 'postgresql://launchpad:local-only-password@127.0.0.1:5432/launchpad' # Configure the Postgres client for this shell.
+$env:MONGODB_URI = 'mongodb://127.0.0.1:27017/launchpad' # Configure the Mongo client for this shell.
+```
+
+```bash
+psql "$DATABASE_URL" --set ON_ERROR_STOP=1 --file chapter-05-database-architecture-state/supabase-schema.sql # Apply every SQL statement and stop at the first error.
+psql "$DATABASE_URL" -c "select tablename, rowsecurity from pg_tables where schemaname = 'public';" # Verify tables and row-level security flags.
+mongosh "$MONGODB_URI" --eval "db.telemetry.insertOne({tenantId:'lab',actorId:'learner',event:'lab.completed',source:'api',properties:{chapter:5},createdAt:new Date()})" # Insert one realistic telemetry document without opening an interactive shell.
+psql "$DATABASE_URL" -c "select count(*) from public.profiles;" # Verify the relational table is queryable.
+mongosh "$MONGODB_URI" --quiet --eval "db.telemetry.countDocuments({event:'lab.completed'})" # Count the document just inserted while suppressing shell noise.
+```
+
+The schema command creates the authorization boundary; the verification queries prove it exists. The telemetry insert demonstrates flexible event data without using it as authorization state.
+
+```json
+{
+  "mcpServers": {
+    "postgres-readonly": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "${DATABASE_READONLY_URL}"]
+    }
+  }
+}
+```
+
+`command` selects the MCP process, `-y` permits the ephemeral package install, the server package implements PostgreSQL tools, and the environment URI points at a read-only role. This is why the agent can inspect a sandbox without receiving a service-role key.

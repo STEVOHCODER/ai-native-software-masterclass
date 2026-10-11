@@ -145,3 +145,7 @@ $json | ConvertTo-Json -Depth 20 | Set-Content $config
 ```
 
 Never expose a service-role key to an MCP server used by an agent. Use a database role that can select only the tables needed for the lesson.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to provision, migrate, query, and expose a read-only database tool. The command blocks include inline explanations; [`EXPLAINED.md`](EXPLAINED.md) covers schema intent.
