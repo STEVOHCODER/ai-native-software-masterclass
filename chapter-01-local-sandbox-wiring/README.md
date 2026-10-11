@@ -218,3 +218,7 @@ npm install --global pnpm@10.6.2
 ```bash
 sudo npm install --global pnpm@10.6.2
 ```
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) for the complete workstation exercise. Every command is annotated inline, and the final section explains what each command does and why it appears in that order. [`EXPLAINED.md`](EXPLAINED.md) adds the architecture walkthrough.
