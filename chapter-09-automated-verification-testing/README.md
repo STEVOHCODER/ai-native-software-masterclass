@@ -75,3 +75,7 @@ TEST_COMMAND=pnpm TEST_ARGS=test pnpm run self-correct
 ```
 
 For CI, use the workflow in `.github/workflows/quality.yml`; for local agent work, run the narrowest test first and expand only when it passes.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to reproduce and fix a failure with bounded diagnostics. The commands explain their runner/output roles inline; [`EXPLAINED.md`](EXPLAINED.md) explains the feedback loop.

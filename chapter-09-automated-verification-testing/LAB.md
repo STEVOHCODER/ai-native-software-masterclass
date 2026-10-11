@@ -70,3 +70,24 @@ Do not let the agent delete the test, weaken the expected status, or retry indef
 
 The learner can reproduce a failure, preserve the acceptance criterion, use bounded diagnostics, and demonstrate a clean test/type/lint/security run.
 
+## Command annotations: what and why
+
+```powershell
+$env:TEST_COMMAND = 'pnpm'                              # Tell the self-correction runner which executable to start.
+$env:TEST_ARGS = 'test'                                 # Give it the test subcommand as a bounded argument string.
+pnpm run self-correct                                    # Capture output, write diagnostics, and return the test exit code.
+Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail 80 # Read only the latest bounded diagnostic lines.
+```
+
+```bash
+export TEST_COMMAND=pnpm                                 # Select pnpm without hard-coding it into the runner.
+export TEST_ARGS=test                                    # Select the repository test script.
+pnpm run self-correct                                    # Execute the feedback loop and fail when tests fail.
+tail -80 chapter-09-automated-verification-testing/last-diagnostics.log # Inspect the end of the captured failure.
+pnpm run lint                                             # Check static quality after the fix.
+pnpm run typecheck                                        # Check strict TypeScript contracts.
+pnpm run test                                              # Run all Node tests.
+pnpm audit --audit-level=high                             # Fail on high/critical dependency advisories.
+```
+
+The environment variables make the runner reusable for another command. `-Tail`/`tail` limits displayed output so an agent receives useful diagnostics without dumping an unbounded or secret-bearing log.
