@@ -54,3 +54,46 @@ Repeat with `__v:0`; the response must be `409` and include the current version.
 
 Add authentication middleware, tenant authorization, rate limiting, request IDs, structured logging, graceful shutdown, and a real persistence adapter before deployment. Terminate TLS at the edge, but still validate forwarded headers against a trusted proxy configuration. Do not return internal exception messages to clients.
 
+## 5. Multi-file route layout
+
+When the teaching server grows, split it into:
+
+```text
+src/
+  app.ts                 # middleware composition and error boundary
+  config.ts              # validated environment
+  routes/progress.ts     # HTTP contract
+  controllers/progress.ts
+  services/progress.ts   # business rules
+  repositories/progress.ts
+  security/input.ts
+  observability/logger.ts
+```
+
+The route must not contain database queries, provider calls, or secret reads. Controllers translate HTTP to typed service calls; repositories own transactions; the app boundary owns error mapping.
+
+## 6. Cross-platform API operations
+
+Windows PowerShell:
+
+```powershell
+$payload = @{ progress = 50; __v = 0 } | ConvertTo-Json
+Invoke-RestMethod http://127.0.0.1:3000/api/progress/course-progress `
+  -Method Patch -ContentType 'application/json' `
+  -Headers @{ Origin = 'http://localhost:5173' } -Body $payload
+```
+
+macOS/Linux:
+
+```bash
+curl --fail-with-body --request PATCH http://127.0.0.1:3000/api/progress/course-progress \
+  --header 'content-type: application/json' \
+  --header 'origin: http://localhost:5173' \
+  --data '{"progress":50,"__v":0}'
+```
+
+Use `npm`, `pnpm`, or `bun` consistently within one deployment. Do not let an agent silently change package managers or lockfiles.
+
+## 7. Database and AI agent boundaries
+
+The API is the policy enforcement point. An AI agent can generate a migration or provider call, but it must invoke the same authenticated service boundary as the product. Never give a frontend MCP tool direct write access to Postgres, MongoDB, Stripe, or DNS.
