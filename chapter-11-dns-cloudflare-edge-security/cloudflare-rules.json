@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "zoneSettings": {
+    "ssl": "strict",
+    "alwaysUseHttps": true,
+    "minTlsVersion": "1.2",
+    "opportunisticEncryption": true,
+    "browserIntegrityCheck": true
+  },
+  "rules": [
+    {
+      "name": "Block obvious automated scraping",
+      "expression": "(http.request.uri.path matches \"(?i)^/(wp-admin|xmlrpc\\.php|\\.env|vendor/phpunit)\") or (http.user_agent matches \"(?i)(masscan|sqlmap|nikto|scrapy|headlesschrome)\")",
+      "action": "block",
+      "enabled": true
+    },
+    {
+      "name": "Protect API write paths",
+      "expression": "starts_with(http.request.uri.path, \"/api/\") and http.request.method in {\"POST\" \"PUT\" \"PATCH\" \"DELETE\"}",
+      "action": "managed_challenge",
+      "enabled": true
+    },
+    {
+      "name": "Do not cache private API responses",
+      "expression": "starts_with(http.request.uri.path, \"/api/\")",
+      "action": "set_cache_level_bypass",
+      "enabled": true
+    }
+  ],
+  "rateLimits": [
+    {
+      "name": "API burst limit",
+      "match": "starts_with(http.request.uri.path, \"/api/\")",
+      "requests": 120,
+      "periodSeconds": 60,
+      "action": "managed_challenge"
+    }
+  ]
+}
+
