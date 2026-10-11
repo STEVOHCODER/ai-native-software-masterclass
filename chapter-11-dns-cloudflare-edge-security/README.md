@@ -1,12 +1,45 @@
-# Chapter 11: DNS, Cloudflare, and Edge Security
+# Chapter 11 — DNS, Cloudflare, and Edge Security
 
-Use DNS records that expose only the intended public surface:
+## Outcome
 
-| Record | Name | Target | Proxy |
-|---|---|---|---|
-| A | `@` | Cloudflare-managed origin address | Proxied |
-| CNAME | `www` | `@` | Proxied |
-| CNAME | `api` | Backend provider hostname | Proxied |
+You will connect the public domain to the frontend and API, enforce TLS, configure Cloudflare proxying, separate cacheable assets from private API responses, and deploy layered WAF/rate-limit rules without blocking legitimate learners.
 
-Set SSL/TLS to Full (strict), enable HSTS only after every subdomain is HTTPS-capable, and keep origin firewalls limited to Cloudflare IP ranges. Cache immutable frontend assets aggressively; bypass cache for authenticated API responses. Deploy WAF managed rules first, then add narrow rate limits and bot challenges based on observed traffic. `cloudflare-rules.json` is a declarative review artifact; apply it through an authenticated, audited infrastructure pipeline.
+## 1. DNS plan
+
+| Record | Name | Target | Proxy | Purpose |
+|---|---|---|---|---|
+| A/AAAA | `@` | provider origin | Proxied | apex website |
+| CNAME | `www` | `@` | Proxied | canonical redirect |
+| CNAME | `api` | backend hostname | Proxied | API origin |
+| CNAME | `staging` | staging frontend | Proxied | pre-release testing |
+
+Use low TTL during migration, then raise it after verification. Do not publish database hosts or private service names.
+
+## 2. TLS setup
+
+1. Add the domain to Cloudflare.
+2. Change registrar nameservers exactly as shown by Cloudflare.
+3. Install a valid origin certificate.
+4. Select **Full (strict)**.
+5. Enable Always Use HTTPS and TLS 1.2 minimum.
+6. Add HSTS only after every required subdomain works over HTTPS.
+7. Verify:
+
+```bash
+curl --head --location https://example.com
+curl --head --location https://api.example.com/health
+openssl s_client -connect example.com:443 -servername example.com </dev/null 2>/dev/null | openssl x509 -noout -issuer -dates
+```
+
+## 3. Cache policy
+
+Cache hashed frontend assets with long immutable lifetimes. Bypass cache for `/api/*`, authenticated responses, cookies, and mutation methods. Never cache personalized HTML or a response containing access tokens.
+
+## 4. WAF and bot controls
+
+Apply managed rules in log mode first, inspect false positives, then block high-confidence exploit paths. The supplied `cloudflare-rules.json` blocks common scanner paths, challenges API writes, bypasses API caching, and adds a bounded rate limit. Tune by route, identity, and response status rather than blocking entire countries without evidence.
+
+## 5. Origin protection
+
+Restrict origin firewalls to Cloudflare IP ranges, validate the original host, configure trusted proxy hops, and alert on direct-origin traffic. Store Cloudflare API tokens with only Zone DNS/Edit and WAF permissions required for the deployment automation.
 
