@@ -7,20 +7,25 @@ You will build an AI provider boundary that can switch models without changing p
 ## 1. Install and configure
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add @anthropic-ai/sdk openai @google/generative-ai
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add -D tsx typescript
 ```
 
 Create a local `.env` from the root example and set only the provider keys you actually use:
 
 ```bash
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cp .env.example .env
 ```
 
 Windows PowerShell:
 
 ```powershell
+# What/why: Create, copy, or configure a real local file/path used by the tool.
 Copy-Item .env.example .env
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 notepad .env
 ```
 
@@ -54,12 +59,14 @@ Do not retry invalid requests, authentication failures, content policy failures,
 ## 4. Exercise: build a model selector
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'Give one concise product idea'}]}).then(console.log).catch((error) => { console.error(error.message); process.exit(1); })"
 ```
 
 Test without spending tokens by omitting keys:
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'hello'}]}).catch((error) => console.log(error.message))"
 ```
 
@@ -88,13 +95,18 @@ Use `.env` for application secrets, a user-level CLI profile for developer defau
 | Shared model policy | `config/models.toml` | `config/models.toml` |
 
 ```powershell
+# What/why: Create, copy, or configure a real local file/path used by the tool.
 New-Item -ItemType Directory -Force "$HOME\.config\openai" | Out-Null
+# What/why: Create, copy, or configure a real local file/path used by the tool.
 Copy-Item .\chapter-02-api-infrastructure-gateways\openai-compatible.config.toml "$HOME\.config\openai\config.toml"
 ```
 
 ```bash
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 mkdir -p ~/.config/openai
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cp chapter-02-api-infrastructure-gateways/openai-compatible.config.toml ~/.config/openai/config.toml
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 chmod 600 ~/.config/openai/config.toml
 ```
 
@@ -114,6 +126,7 @@ timeout  = finite request deadline
 Test a router before wiring it into the application:
 
 ```bash
+# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail --silent --show-error "$OPENAI_BASE_URL/chat/completions" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
@@ -123,7 +136,10 @@ curl --fail --silent --show-error "$OPENAI_BASE_URL/chat/completions" \
 PowerShell:
 
 ```powershell
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $headers = @{ Authorization = "Bearer $env:OPENAI_API_KEY"; 'Content-Type' = 'application/json' }
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $body = @{ model = 'gpt-4.1-mini'; messages = @(@{ role = 'user'; content = 'Reply with OK' }); temperature = 0 } | ConvertTo-Json -Depth 5
+# What/why: Use PowerShell to download or call the service with explicit error behavior.
 Invoke-RestMethod "$env:OPENAI_BASE_URL/chat/completions" -Headers $headers -Method Post -Body $body
 ```

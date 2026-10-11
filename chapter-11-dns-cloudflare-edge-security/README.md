@@ -26,8 +26,11 @@ Use low TTL during migration, then raise it after verification. Do not publish d
 7. Verify:
 
 ```bash
+# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --head --location https://example.com
+# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --head --location https://api.example.com/health
+# What/why: Inspect DNS or TLS evidence at the network boundary rather than assuming it is correct.
 openssl s_client -connect example.com:443 -servername example.com </dev/null 2>/dev/null | openssl x509 -noout -issuer -dates
 ```
 
@@ -48,15 +51,20 @@ Restrict origin firewalls to Cloudflare IP ranges, validate the original host, c
 Install Cloudflare's CLI/API tooling through the official release channel, then verify:
 
 ```bash
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cloudflared --version
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cloudflared tunnel login
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cloudflared tunnel list
 ```
 
 Windows:
 
 ```powershell
+# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install Cloudflare.cloudflared
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cloudflared --version
 ```
 
@@ -65,17 +73,24 @@ Create a scoped API token in the Cloudflare dashboard. Store it as `CLOUDFLARE_A
 ## 7. DNS verification commands
 
 ```bash
+# What/why: Inspect DNS or TLS evidence at the network boundary rather than assuming it is correct.
 dig +short example.com A
+# What/why: Inspect DNS or TLS evidence at the network boundary rather than assuming it is correct.
 dig +short www.example.com CNAME
+# What/why: Inspect DNS or TLS evidence at the network boundary rather than assuming it is correct.
 dig +short api.example.com CNAME
+# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail --silent --show-error --resolve api.example.com:443:ORIGIN_IP https://api.example.com/health
 ```
 
 Windows:
 
 ```powershell
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 Resolve-DnsName example.com
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 Resolve-DnsName api.example.com
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 Test-NetConnection api.example.com -Port 443
 ```
 

@@ -7,9 +7,13 @@ Complete Labs 01–05. The learner should have the agent configured and a backen
 ## Installation
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm create vite launchpad-web --template react-ts
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 cd launchpad-web
+# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add tailwindcss @tailwindcss/vite
 ```
 
@@ -34,6 +38,7 @@ Do not add a component library. Run typecheck, lint, and build.
 ## Execution
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run dev -- --host 127.0.0.1
 ```
 
@@ -46,8 +51,11 @@ The dashboard renders course cards, layout controls change the arrangement, a fa
 ## Verification
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run build
 ```
 
@@ -74,9 +82,13 @@ The learner can demonstrate a working responsive interface, explain the state tr
 ## Command annotations: what and why
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm create vite launchpad-web --template react-ts # Generate a real React + TypeScript project from Vite's template.
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 cd launchpad-web                                      # Enter the generated application before installing its dependencies.
+# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install                                           # Resolve the generated package manifest and create/update its lockfile.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add tailwindcss @tailwindcss/vite                # Add the utility CSS engine and its Vite integration.
 ```
 
@@ -89,9 +101,13 @@ VITE_API_ORIGIN=http://127.0.0.1:3000                 # Public browser URL for t
 `VITE_` variables are bundled into browser code. This is why the value may identify an API host but must never contain a provider key or database password.
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run dev -- --host 127.0.0.1                      # Start Vite and bind development traffic only to the local machine.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck                                     # Prove component props and API data are type-safe.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint                                          # Detect code-quality and unsafe-pattern violations.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run build                                         # Produce the production frontend bundle and catch build-only failures.
 ```
 

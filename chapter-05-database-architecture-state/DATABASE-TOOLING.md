@@ -3,14 +3,20 @@
 ## Local service lifecycle
 
 ```powershell
+# What/why: Inspect or operate the local container runtime used by the course.
 docker start launchpad-postgres launchpad-mongo
+# What/why: Inspect or operate the local container runtime used by the course.
 docker ps --filter "name=launchpad"
+# What/why: Inspect or operate the local container runtime used by the course.
 docker logs --tail 50 launchpad-postgres
 ```
 
 ```bash
+# What/why: Inspect or operate the local container runtime used by the course.
 docker start launchpad-postgres launchpad-mongo
+# What/why: Inspect or operate the local container runtime used by the course.
 docker ps --filter name=launchpad
+# What/why: Inspect or operate the local container runtime used by the course.
 docker logs --tail 50 launchpad-mongo
 ```
 

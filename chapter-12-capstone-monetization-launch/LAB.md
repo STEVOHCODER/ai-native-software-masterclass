@@ -7,7 +7,9 @@ Complete Labs 01–11. Use Launchpad Hub or a narrowly scoped product of your ch
 ## Installation
 
 ```bash
+# What/why: Create or select an isolated branch so experimental work does not modify the shared branch.
 git switch -c feat/capstone-launch
+# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile
 ```
 
@@ -47,9 +49,13 @@ Build in vertical slices:
 At each slice:
 
 ```bash
+# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --check
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test
 ```
 
@@ -79,11 +85,17 @@ The learner can explain the architecture, reproduce the setup, show the agent's 
 ## Command annotations: what and why
 
 ```bash
+# What/why: Create or select an isolated branch so experimental work does not modify the shared branch.
 git switch -c feat/capstone-launch                       # Isolate the final product work from main.
+# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile                            # Recreate the exact dependency graph before implementation.
+# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --check                                          # Catch whitespace errors after each vertical slice.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck                                        # Prove strict TypeScript contracts remain valid.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint                                             # Prove static quality and repository conventions remain valid.
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test                                             # Execute the automated behavior suite.
 ```
 

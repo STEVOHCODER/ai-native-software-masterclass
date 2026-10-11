@@ -9,6 +9,7 @@ You will model identity, tenancy, course progress, entitlements, audit history, 
 Local Postgres for repeatable SQL practice:
 
 ```bash
+# What/why: Start the local container with explicit name, environment, port, and lifecycle settings.
 docker run --name launchpad-postgres --detach \
   --env POSTGRES_USER=launchpad \
   --env POSTGRES_PASSWORD=change-this-locally \
@@ -19,6 +20,7 @@ docker run --name launchpad-postgres --detach \
 Local MongoDB for telemetry practice:
 
 ```bash
+# What/why: Start the local container with explicit name, environment, port, and lifecycle settings.
 docker run --name launchpad-mongo --detach \
   --publish 27017:27017 mongo:8
 ```
@@ -28,6 +30,7 @@ Hosted alternative: create a Supabase project and a MongoDB Atlas cluster, restr
 ## 2. Apply the relational schema
 
 ```bash
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 psql "$DATABASE_URL" --set ON_ERROR_STOP=1 --file chapter-05-database-architecture-state/supabase-schema.sql
 ```
 
@@ -56,6 +59,7 @@ Do not use telemetry as an authorization source. Do not put mutable billing trut
 ## 4. Mongoose telemetry lab
 
 ```bash
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm exec tsx -e "import { TelemetryModel } from './chapter-05-database-architecture-state/mongoose-model.ts'; console.log(TelemetryModel.schema.indexes())"
 ```
 
@@ -64,8 +68,11 @@ The model rejects unknown top-level fields, bounds property count, validates eve
 ## 5. Migration and backup drill
 
 ```bash
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 pg_dump "$DATABASE_URL" --format=custom --file=backup.dump
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 pg_restore --list backup.dump | Select-Object -First 20
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 mongodump --uri "$MONGODB_URI" --archive=telemetry.archive
 ```
 
@@ -76,40 +83,56 @@ Test restore into a separate database. Record recovery point objective, recovery
 Supabase CLI options:
 
 ```powershell
+# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install Supabase.CLI
+# What/why: Install the developer tool through Scoop without requiring machine-wide installation.
 scoop install supabase
 ```
 
 ```bash
+# What/why: Install the required developer tool through Homebrew on macOS.
 brew install supabase/tap/supabase
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 npx supabase --version
 ```
 
 Authenticate without putting a token in shell history:
 
 ```powershell
+# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:SUPABASE_ACCESS_TOKEN = Read-Host 'Supabase token'
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 supabase login
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 supabase link --project-ref <project-ref>
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 supabase db push
 ```
 
 ```bash
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 read -rsp 'Supabase token: ' SUPABASE_ACCESS_TOKEN; export SUPABASE_ACCESS_TOKEN; echo
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 supabase link --project-ref <project-ref>
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 supabase db push
 ```
 
 MongoDB tools:
 
 ```powershell
+# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install MongoDB.Server MongoDB.Shell
 ```
 
 ```bash
+# What/why: Install the required developer tool through Homebrew on macOS.
 brew install mongosh mongodb-atlas
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 mongosh "$MONGODB_URI"
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 atlas auth login
+# What/why: Use the database CLI to apply, inspect, or verify state in the selected environment.
 atlas projects list
 ```
 
@@ -134,13 +157,21 @@ Connect an agent to a **read-only** database MCP server first. The MCP configura
 PowerShell registration for an agent that supports JSON configuration:
 
 ```powershell
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $config = "$HOME\.continue\config.json"
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $json = Get-Content $config -Raw | ConvertFrom-Json
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $json | Add-Member -NotePropertyName mcpServers -NotePropertyValue ([pscustomobject]@{}) -Force
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $json.mcpServers | Add-Member -NotePropertyName supabase-readonly -NotePropertyValue ([pscustomobject]@{
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
   command = 'npx'
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
   args = @('-y', '@modelcontextprotocol/server-postgres', '${DATABASE_READONLY_URL}')
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 }) -Force
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $json | ConvertTo-Json -Depth 20 | Set-Content $config
 ```
 

@@ -10,14 +10,19 @@ Install each tool only if it fits the learner's workflow. Do not install every a
 
 ```powershell
 # Windows package-manager examples
+# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install --id GitHub.Copilot
+# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install --id Anthropic.Claude
 ```
 
 ```bash
 # macOS/Linux package-manager examples
+# What/why: Install the required developer tool through Homebrew on macOS.
 brew install node
+# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global @openai/codex
+# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global opencode-ai
 ```
 
@@ -64,9 +69,13 @@ Use local embeddings for source indexing when privacy matters. Use cloud models 
 ## 5. Agent review lab
 
 ```bash
+# What/why: Create or select an isolated branch so experimental work does not modify the shared branch.
 git switch -c lab/agent-controlled-change
+# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --check
+# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test:concurrency
+# What/why: Inspect or change version-controlled project state in an auditable way.
 git status --short
 ```
 
@@ -93,12 +102,16 @@ Run [`LAB.md`](LAB.md) to install and direct an agent on a bounded task. Command
 Installer names and package IDs change. Confirm each official source before execution, then verify:
 
 ```powershell
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 Get-Command claude, codex, opencode, gh -ErrorAction SilentlyContinue
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 claude --version; codex --version; opencode --version; gh --version
 ```
 
 ```bash
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 command -v claude codex opencode gh
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 claude --version; codex --version; opencode --version; gh --version
 ```
 
@@ -115,30 +128,42 @@ claude --version; codex --version; opencode --version; gh --version
 Windows setup:
 
 ```powershell
+# What/why: Create, copy, or configure a real local file/path used by the tool.
 New-Item -ItemType Directory -Force "$HOME\.claude", "$HOME\.codex", "$HOME\.config\opencode", "$HOME\.continue" | Out-Null
+# What/why: Create, copy, or configure a real local file/path used by the tool.
 Copy-Item .\chapter-03-coding-agents-ide-control\continue-config.json "$HOME\.continue\config.json"
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension continue.continue
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension saoudrizwan.claude-dev
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension RooVeterinaryInc.roo-cline
 ```
 
 macOS/Linux setup:
 
 ```bash
+# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 mkdir -p ~/.claude ~/.codex ~/.config/opencode ~/.continue
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cp chapter-03-coding-agents-ide-control/continue-config.json ~/.continue/config.json
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension continue.continue
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension saoudrizwan.claude-dev
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension RooVeterinaryInc.roo-cline
 ```
 
 Edit files manually in VS Code, or write deterministic JSON/TOML with PowerShell/Python. Prefer manual review after generation:
 
 ```powershell
+# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 Get-Content "$HOME\.continue\config.json" | ConvertFrom-Json | ConvertTo-Json -Depth 20
 ```
 
 ```bash
+# What/why: Run Python for an isolated utility, configuration check, or environment verification.
 python3 -m json.tool ~/.continue/config.json >/dev/null
 ```
 

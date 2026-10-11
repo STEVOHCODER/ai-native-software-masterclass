@@ -19,7 +19,9 @@ Map this concept to each tool's native setting rather than copying the JSON blin
 PowerShell user-scoped values:
 
 ```powershell
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 [Environment]::SetEnvironmentVariable('OPENAI_API_KEY', 'use-your-secret-manager', 'User')
+# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 [Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', 'use-your-secret-manager', 'User')
 ```
 
@@ -28,6 +30,7 @@ Do not use the command above with a literal production key in a recorded lesson.
 macOS/Linux session values:
 
 ```bash
+# What/why: Set a process environment variable so the next command receives explicit configuration.
 export OPENAI_API_KEY="$(security find-generic-password -a "$USER" -s launchpad-openai -w)"
 ```
 
