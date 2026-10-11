@@ -12,14 +12,12 @@ Write a one-page brief: user, painful workflow, measurable outcome, non-goals, d
 
 ### 00:20–00:50 — Bootstrap
 
+These commands run the project tool through the configured package-manager/runtime workflow. They also create or select an isolated branch so experimental work does not modify the shared branch. They also install project dependencies using the selected package manager and its lockfile policy.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm create vite capstone-web --template react-ts
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm create hono capstone-api
-# What/why: Create or select an isolated branch so experimental work does not modify the shared branch.
 git switch -c feat/capstone-launch
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile
 ```
 
@@ -31,16 +29,13 @@ Implement one authenticated flow from form input to validated API request, datab
 
 ### 01:30–02:00 — Harden and verify
 
+These commands run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test:concurrency
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm audit --audit-level=high
 ```
 

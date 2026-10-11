@@ -6,30 +6,29 @@ You will construct a secure Express API from request boundary to persistence bou
 
 ## 1. Install and run
 
+These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm start
 ```
 
 PowerShell:
 
+These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
 ```powershell
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:PORT = '3000'
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:ALLOWED_ORIGIN = 'http://localhost:5173'
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm start
 ```
 
 Verify the process:
 
+These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
 ```bash
-# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail http://127.0.0.1:3000/health
-# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail http://127.0.0.1:3000/api/progress/course-progress
 ```
 
@@ -48,8 +47,9 @@ The in-memory map is a teaching adapter. In a multi-process deployment, replace 
 
 ## 3. Exercise: observe optimistic locking
 
+These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
 ```bash
-# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --request PATCH http://127.0.0.1:3000/api/progress/course-progress \
   --header "content-type: application/json" \
   --header "origin: http://localhost:5173" \
@@ -84,10 +84,10 @@ The route must not contain database queries, provider calls, or secret reads. Co
 
 Windows PowerShell:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior.
+
 ```powershell
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 $payload = @{ progress = 50; __v = 0 } | ConvertTo-Json
-# What/why: Use PowerShell to download or call the service with explicit error behavior.
 Invoke-RestMethod http://127.0.0.1:3000/api/progress/course-progress `
   -Method Patch -ContentType 'application/json' `
   -Headers @{ Origin = 'http://localhost:5173' } -Body $payload
@@ -95,8 +95,9 @@ Invoke-RestMethod http://127.0.0.1:3000/api/progress/course-progress `
 
 macOS/Linux:
 
+These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
 ```bash
-# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail-with-body --request PATCH http://127.0.0.1:3000/api/progress/course-progress \
   --header 'content-type: application/json' \
   --header 'origin: http://localhost:5173' \

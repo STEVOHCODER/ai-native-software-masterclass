@@ -6,18 +6,14 @@ You will turn the backend contract into a responsive, keyboard-accessible produc
 
 ## 1. Scaffold a real React application
 
+These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or prepare the local machine so the next operation has a known path and state. They also install project dependencies using the selected package manager and its lockfile policy.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm create vite launchpad-web --template react-ts
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 cd launchpad-web
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add tailwindcss @tailwindcss/vite
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm exec tailwindcss init -p
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run dev -- --host 127.0.0.1
 ```
 
@@ -47,10 +43,10 @@ The dashboard must handle:
 
 ## 4. Browser verification
 
+These commands run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run build
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm exec vite preview --host 127.0.0.1
 ```
 

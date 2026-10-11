@@ -17,25 +17,22 @@ You will create a closed loop in which an AI coding agent can change code, run d
 
 ## 2. Run the gates
 
+These commands run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test:concurrency
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run build
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run security:audit
 ```
 
 Run the focused concurrency test directly while teaching:
 
+These commands run a Node.js script or diagnostic using the project runtime.
+
 ```bash
-# What/why: Run a Node.js script or diagnostic using the project runtime.
 node --test chapter-09-automated-verification-testing/concurrency.test.js
 ```
 
@@ -47,10 +44,10 @@ Extend the lab with a fourth request using an invalid progress value, a malforme
 
 ## 4. Self-correction protocol
 
+These commands run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run self-correct
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail 80
 ```
 
@@ -71,19 +68,19 @@ Persist each iteration's command, exit code, duration, changed files, and last d
 
 PowerShell:
 
+These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
 ```powershell
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:TEST_COMMAND = 'pnpm'
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:TEST_ARGS = 'test'
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run self-correct
 ```
 
 macOS/Linux:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 TEST_COMMAND=pnpm TEST_ARGS=test pnpm run self-correct
 ```
 

@@ -4,8 +4,9 @@
 
 Complete Labs 01–02. Create a disposable branch:
 
+These commands create or select an isolated branch so experimental work does not modify the shared branch.
+
 ```bash
-# What/why: Create or select an isolated branch so experimental work does not modify the shared branch.
 git switch -c lab/agent-controlled-change
 ```
 
@@ -17,23 +18,21 @@ Choose one terminal agent and one editor extension. The commands below show comm
 
 Windows PowerShell:
 
+These commands install project dependencies using the selected package manager and its lockfile policy. They also install the selected windows package so the required tool is available to later labs.
+
 ```powershell
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global @openai/codex
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global opencode-ai
-# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install --id GitHub.cli
 ```
 
 macOS/Linux:
 
+These commands install project dependencies using the selected package manager and its lockfile policy. They also install the required developer tool through homebrew on macos.
+
 ```bash
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global @openai/codex
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global opencode-ai
-# What/why: Install the required developer tool through Homebrew on macOS.
 brew install gh
 ```
 
@@ -41,25 +40,21 @@ For Claude Code, use the official installer from the Claude developer site; for 
 
 ### VS Code extensions
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```powershell
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension continue.continue
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension saoudrizwan.claude-dev
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension RooVeterinaryInc.roo-cline
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension GitHub.copilot
 ```
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension continue.continue
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension saoudrizwan.claude-dev
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension RooVeterinaryInc.roo-cline
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension GitHub.copilot
 ```
 
@@ -67,38 +62,40 @@ code --install-extension GitHub.copilot
 
 Create user directories:
 
+These commands create, copy, or configure a real local file/path used by the tool.
+
 ```powershell
-# What/why: Create, copy, or configure a real local file/path used by the tool.
 New-Item -ItemType Directory -Force "$HOME\.continue", "$HOME\.codex", "$HOME\.config\opencode" | Out-Null
-# What/why: Create, copy, or configure a real local file/path used by the tool.
 Copy-Item .\chapter-03-coding-agents-ide-control\continue-config.json "$HOME\.continue\config.json"
 ```
 
+These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 mkdir -p ~/.continue ~/.codex ~/.config/opencode
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cp chapter-03-coding-agents-ide-control/continue-config.json ~/.continue/config.json
 ```
 
 Open the copied file manually in VS Code and select either the local Ollama model or cloud model. For a local model:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 ollama pull qwen2.5-coder:7b
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 ollama pull nomic-embed-text
 ```
 
 Verify the JSON:
 
+These commands read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```powershell
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 Get-Content "$HOME\.continue\config.json" -Raw | ConvertFrom-Json | Out-Null
 ```
 
+These commands run Python for an isolated utility, configuration check, or environment verification.
+
 ```bash
-# What/why: Run Python for an isolated utility, configuration check, or environment verification.
 python3 -m json.tool ~/.continue/config.json >/dev/null
 ```
 
@@ -116,12 +113,11 @@ Return the diff and the exact command output.
 
 Then inspect:
 
+These commands inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff -- chapter-09-automated-verification-testing/concurrency.test.js
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test:concurrency
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --check
 ```
 
@@ -131,12 +127,11 @@ The agent adds one focused test, runs it successfully, and changes no other file
 
 ## Verification
 
+These commands inspect or change version-controlled project state in an auditable way.
+
 ```bash
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git status --short
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --stat
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git log --oneline -1
 ```
 
@@ -156,74 +151,58 @@ The agent launches, reads the repository, completes the bounded test task, and t
 
 ## Command annotations: what and why
 
+These commands install project dependencies using the selected package manager and its lockfile policy. They also install the selected windows package so the required tool is available to later labs. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```powershell
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global @openai/codex                         # Install the Codex terminal agent in the global npm prefix.
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global opencode-ai                           # Install the OpenCode terminal agent for repository tasks.
-# What/why: Install the selected Windows package so the required tool is available to later labs.
 winget install --id GitHub.cli                             # Install GitHub CLI for authenticated repository operations.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension continue.continue                 # Install Continue into VS Code.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension saoudrizwan.claude-dev             # Install the Cline extension for agent-assisted edits.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension RooVeterinaryInc.roo-cline         # Install Roo Code for an alternate agent workflow.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension GitHub.copilot                     # Install GitHub Copilot's editor integration.
 ```
 
+These commands install project dependencies using the selected package manager and its lockfile policy. They also install the required developer tool through homebrew on macos. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global @openai/codex                         # Install the Codex command on macOS/Linux.
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 npm install --global opencode-ai                           # Install OpenCode through the same Node toolchain.
-# What/why: Install the required developer tool through Homebrew on macOS.
 brew install gh                                             # Install GitHub CLI through Homebrew.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 code --install-extension continue.continue                 # Install Continue from the VS Code command line.
 ```
 
 Global npm installation makes the CLI discoverable outside one project; editor installation makes the agent available inside the IDE. Neither command gives the tool permission to deploy or read secrets.
 
+These commands create, copy, or configure a real local file/path used by the tool. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```powershell
-# What/why: Create, copy, or configure a real local file/path used by the tool.
 New-Item -ItemType Directory -Force "$HOME\.continue", "$HOME\.codex", "$HOME\.config\opencode" | Out-Null # Create real per-user config folders.
-# What/why: Create, copy, or configure a real local file/path used by the tool.
 Copy-Item .\chapter-03-coding-agents-ide-control\continue-config.json "$HOME\.continue\config.json" # Copy the checked-in safe model matrix to Continue's user path.
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 Get-Content "$HOME\.continue\config.json" -Raw | ConvertFrom-Json | Out-Null # Parse JSON and fail if the configuration is malformed.
 ```
 
+These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also run python for an isolated utility, configuration check, or environment verification.
+
 ```bash
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 mkdir -p ~/.continue ~/.codex ~/.config/opencode         # Create the equivalent Unix configuration folders.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 cp chapter-03-coding-agents-ide-control/continue-config.json ~/.continue/config.json # Install the project configuration for the current user.
-# What/why: Run Python for an isolated utility, configuration check, or environment verification.
 python3 -m json.tool ~/.continue/config.json >/dev/null   # Validate JSON syntax without printing the full file.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 ollama pull qwen2.5-coder:7b                              # Download a local coding model for offline agent work.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 ollama pull nomic-embed-text                              # Download a local embedding model for private code retrieval.
 ```
 
 The user-level path matters: the editor reads it only after restart, while the repository keeps the template reviewable. Local model downloads are optional and consume disk.
 
+These commands create or select an isolated branch so experimental work does not modify the shared branch. They also inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Create or select an isolated branch so experimental work does not modify the shared branch.
 git switch -c lab/agent-controlled-change                    # Isolate the agent experiment from main.
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff -- chapter-09-automated-verification-testing/concurrency.test.js # Inspect only the allowed file.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test:concurrency                                     # Execute the behavior the agent was asked to preserve.
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --check                                              # Detect whitespace errors before review.
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git status --short                                            # Show every file the agent touched.
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git diff --stat                                               # Summarize the size of the change.
-# What/why: Inspect or change version-controlled project state in an auditable way.
 git log --oneline -1                                          # Confirm the current commit context.
 ```
 

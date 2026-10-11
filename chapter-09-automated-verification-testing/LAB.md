@@ -6,8 +6,9 @@ Complete Lab 08. Work on a branch and save the current passing test output.
 
 ## Installation
 
+These commands install project dependencies using the selected package manager and its lockfile policy.
+
 ```bash
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile
 ```
 
@@ -15,17 +16,17 @@ pnpm install --frozen-lockfile
 
 Set a bounded self-correction command:
 
+These commands set a process environment variable so the next command receives explicit configuration.
+
 ```powershell
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:TEST_COMMAND = 'pnpm'
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:TEST_ARGS = 'test'
 ```
 
+These commands set a process environment variable so the next command receives explicit configuration.
+
 ```bash
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 export TEST_COMMAND=pnpm
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 export TEST_ARGS=test
 ```
 
@@ -42,19 +43,19 @@ changed files, and final commands.
 
 Run:
 
+These commands run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run self-correct
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail 80
 ```
 
 macOS/Linux:
 
+These commands run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run self-correct
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 tail -80 chapter-09-automated-verification-testing/last-diagnostics.log
 ```
 
@@ -64,14 +65,12 @@ The agent identifies the failed assertion, fixes implementation or fixture based
 
 ## Verification
 
+These commands run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm audit --audit-level=high
 ```
 
@@ -85,33 +84,25 @@ The learner can reproduce a failure, preserve the acceptance criterion, use boun
 
 ## Command annotations: what and why
 
+These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```powershell
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:TEST_COMMAND = 'pnpm'                              # Tell the self-correction runner which executable to start.
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:TEST_ARGS = 'test'                                 # Give it the test subcommand as a bounded argument string.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run self-correct                                    # Capture output, write diagnostics, and return the test exit code.
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail 80 # Read only the latest bounded diagnostic lines.
 ```
 
+These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
 ```bash
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 export TEST_COMMAND=pnpm                                 # Select pnpm without hard-coding it into the runner.
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 export TEST_ARGS=test                                    # Select the repository test script.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run self-correct                                    # Execute the feedback loop and fail when tests fail.
-# What/why: Read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
 tail -80 chapter-09-automated-verification-testing/last-diagnostics.log # Inspect the end of the captured failure.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run lint                                             # Check static quality after the fix.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run typecheck                                        # Check strict TypeScript contracts.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm run test                                              # Run all Node tests.
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm audit --audit-level=high                             # Fail on high/critical dependency advisories.
 ```
 

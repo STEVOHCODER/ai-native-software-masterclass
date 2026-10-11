@@ -6,8 +6,9 @@ Complete Lab 06. Use an agent that supports MCP configuration. This lab uses the
 
 ## Installation
 
+These commands install project dependencies using the selected package manager and its lockfile policy.
+
 ```bash
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile
 ```
 
@@ -41,17 +42,18 @@ Create the parent folder, edit the file in a JSON editor, save, and fully restar
 
 Start the server manually:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 
 Send protocol requests from another terminal:
 
+These commands send one deterministic protocol request to the process so its response can be verified.
+
 ```bash
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 
@@ -65,8 +67,9 @@ The agent discovers `read_documentation`, returns the requested chapter content,
 
 Attempt traversal and confirm a structured error:
 
+These commands send one deterministic protocol request to the process so its response can be verified.
+
 ```bash
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"read_documentation","arguments":{"path":"../.env"}}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 
@@ -85,16 +88,13 @@ The learner can register, restart, discover, use, verify, and safely remove the 
 
 ## Command annotations: what and why
 
+These commands install project dependencies using the selected package manager and its lockfile policy. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also send one deterministic protocol request to the process so its response can be verified.
+
 ```bash
-# What/why: Install project dependencies using the selected package manager and its lockfile policy.
 pnpm install --frozen-lockfile                            # Install the exact MCP server and TypeScript toolchain.
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Start the server with the repository as its allowed root.
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Send the protocol handshake and print the server capabilities.
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Ask the server to advertise discoverable tools.
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"read_documentation","arguments":{"path":"../.env"}}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Attempt traversal and prove the path boundary rejects it.
 ```
 

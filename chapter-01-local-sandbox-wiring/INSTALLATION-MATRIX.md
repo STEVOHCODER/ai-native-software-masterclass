@@ -19,25 +19,22 @@ The shell must resolve one working executable for each row:
 
 Windows:
 
+These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```powershell
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 where.exe node
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 Get-Command node -All
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 [Environment]::GetEnvironmentVariable('Path', 'User') -split ';'
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 [Environment]::GetEnvironmentVariable('Path', 'Machine') -split ';'
 ```
 
 macOS/Linux:
 
+These commands inspect or prepare the local machine so the next operation has a known path and state. They also send one deterministic protocol request to the process so its response can be verified.
+
 ```bash
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 command -v node
-# What/why: Inspect or prepare the local machine so the next operation has a known path and state.
 type -a node
-# What/why: Send one deterministic protocol request to the process so its response can be verified.
 printf '%s\n' "$PATH" | tr ':' '\n'
 ```
 
@@ -55,12 +52,14 @@ If a new installation is not visible, open a new terminal. Do not edit machine P
 
 Inspect before editing:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```powershell
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 Test-Path $PROFILE; if (Test-Path $PROFILE) { Get-Content $PROFILE }
 ```
 
+These commands evaluate a local prerequisite or branch condition before continuing the setup.
+
 ```bash
-# What/why: Evaluate a local prerequisite or branch condition before continuing the setup.
 test -f ~/.zshrc && sed -n '1,160p' ~/.zshrc
 ```

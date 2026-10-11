@@ -6,24 +6,25 @@ You will build a narrowly scoped MCP server that gives an AI coding agent safe a
 
 ## 1. Install the MCP development toolchain
 
+These commands run the project tool through the configured package-manager/runtime workflow.
+
 ```bash
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add @modelcontextprotocol/sdk
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm add -D tsx typescript
 ```
 
 Run the local server with an explicit documentation root:
 
+These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
 ```powershell
-# What/why: Set a process environment variable so the next command receives explicit configuration.
 $env:MCP_DOCS_ROOT = (Resolve-Path .).Path
-# What/why: Run the project tool through the configured package-manager/runtime workflow.
 pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```bash
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 
@@ -43,8 +44,9 @@ The process uses line-delimited JSON-RPC over standard input/output. Do not prin
 
 Send an initialize request from a second terminal:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```powershell
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 

@@ -15,19 +15,19 @@ Approver:
 
 ## Smoke tests
 
+These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
 ```bash
-# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail --silent --show-error https://api.example.com/health
-# What/why: Fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
 curl --fail --silent --show-error --head https://app.example.com
 ```
 
 PowerShell:
 
+These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
 ```powershell
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 Invoke-WebRequest https://api.example.com/health -UseBasicParsing
-# What/why: Execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
 Invoke-WebRequest https://app.example.com -Method Head -UseBasicParsing
 ```
 
