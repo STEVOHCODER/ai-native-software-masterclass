@@ -74,6 +74,10 @@ git diff HEAD~1..HEAD
 
 The learner passes when a bad AI mutation can be identified, reverted, and explained without losing unrelated work.
 
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) for the recovery drill. Every Git/GitHub command is annotated with its effect and reason, with additional source explanation in [`EXPLAINED.md`](EXPLAINED.md).
+
 ## 6. GitHub CLI and agent authentication
 
 Install GitHub CLI:
