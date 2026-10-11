@@ -3,9 +3,16 @@
 const express = require('express');
 const helmet = require('helmet');
 
+/**
+ * @typedef {{ id: string, title: string, progress: number, __v: number }} ProgressRecord
+ * @typedef {{ progress: number, __v: number, title?: string }} ProgressPatch
+ * @typedef {{ record: ProgressRecord }} RequestLocals
+ */
+
 const app = express();
 const port = Number(process.env.PORT || 3000);
 const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:5173';
+/** @type {Map<string, ProgressRecord>} */
 const records = new Map([['course-progress', { id: 'course-progress', title: 'Local Sandbox Wiring', progress: 0, __v: 0 }]]);
 
 app.disable('x-powered-by');
@@ -17,18 +24,22 @@ app.use((req, res, next) => {
   next();
 });
 
+/** @param {unknown} value @param {number} maxLength @returns {string | null} */
 const cleanText = (value, maxLength) => {
   if (typeof value !== 'string' || value.length > maxLength) return null;
   const clean = value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').replace(/[<>]/g, '');
   return clean.trim() || null;
 };
+/** @param {unknown} value @returns {value is number} */
 const validProgress = (value) => Number.isInteger(value) && value >= 0 && value <= 100;
+/** @param {import('express').Request & Partial<RequestLocals>} req @param {import('express').Response} res @param {import('express').NextFunction} next */
 const requireRecord = (req, res, next) => { const record = records.get(req.params.id); if (!record) return res.status(404).json({ error: 'record_not_found' }); req.record = record; next(); };
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.get('/api/progress/:id', requireRecord, (req, res) => res.json(req.record));
 app.patch('/api/progress/:id', requireRecord, (req, res, next) => {
   try {
+    /** @type {ProgressPatch} */
     const body = req.body;
     if (!body || !Number.isInteger(body.__v) || !validProgress(body.progress)) return res.status(400).json({ error: 'invalid_payload' });
     const title = body.title === undefined ? req.record.title : cleanText(body.title, 160);
@@ -48,4 +59,3 @@ app.use((error, _req, res, _next) => {
 
 if (require.main === module) app.listen(port, '127.0.0.1', () => console.log(`API listening on 127.0.0.1:${port}`));
 module.exports = { app, records };
-
