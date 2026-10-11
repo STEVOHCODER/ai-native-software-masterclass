@@ -43,3 +43,40 @@ Apply managed rules in log mode first, inspect false positives, then block high-
 
 Restrict origin firewalls to Cloudflare IP ranges, validate the original host, configure trusted proxy hops, and alert on direct-origin traffic. Store Cloudflare API tokens with only Zone DNS/Edit and WAF permissions required for the deployment automation.
 
+## 6. CLI and API setup
+
+Install Cloudflare's CLI/API tooling through the official release channel, then verify:
+
+```bash
+cloudflared --version
+cloudflared tunnel login
+cloudflared tunnel list
+```
+
+Windows:
+
+```powershell
+winget install Cloudflare.cloudflared
+cloudflared --version
+```
+
+Create a scoped API token in the Cloudflare dashboard. Store it as `CLOUDFLARE_API_TOKEN`; do not use a global account key for course automation.
+
+## 7. DNS verification commands
+
+```bash
+dig +short example.com A
+dig +short www.example.com CNAME
+dig +short api.example.com CNAME
+curl --fail --silent --show-error --resolve api.example.com:443:ORIGIN_IP https://api.example.com/health
+```
+
+Windows:
+
+```powershell
+Resolve-DnsName example.com
+Resolve-DnsName api.example.com
+Test-NetConnection api.example.com -Port 443
+```
+
+Have an agent generate a DNS change plan, but require a human to compare it with the intended records before applying it.
