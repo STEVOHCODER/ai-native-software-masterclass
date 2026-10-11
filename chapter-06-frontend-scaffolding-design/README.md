@@ -48,3 +48,18 @@ pnpm exec vite preview --host 127.0.0.1
 
 In browser DevTools, test at 320 px, 768 px, and 1440 px. Test keyboard-only navigation, 200% zoom, slow network, offline reload, and screen-reader labels. Confirm no API key appears in page source or network requests.
 
+## 5. AI-agent frontend brief
+
+Give the coding agent this bounded brief for a new screen:
+
+```text
+Build the /courses route in React + TypeScript.
+Use existing Tailwind tokens and typed API data.
+Create loading, error, empty, and success states.
+Support keyboard navigation, 200% zoom, reduced motion, and 320px width.
+Do not add a UI library or inline secrets.
+Run pnpm run typecheck, pnpm run lint, and pnpm run build.
+Return screenshots or exact visual verification steps.
+```
+
+Ask the agent to produce a component tree and state map before changing code. Review the DOM, focus order, network calls, and mobile breakpoints rather than accepting a screenshot alone.
