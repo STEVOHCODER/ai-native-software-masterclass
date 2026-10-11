@@ -64,3 +64,11 @@ Request architecture and data-flow diagrams, dependency inventory, credentials o
 Hero: measurable outcome for a specific buyer. Proof: before/after metric or concrete artifact. Method: bounded phases and decision points. Offer: three packages with clear exclusions. Risk reversal: defined acceptance criteria and rollback. CTA: one qualification form asking only role, workflow, current stack, timeline, and budget range.
 
 Do not claim guaranteed revenue, hide AI data handling, or request credentials through the marketing form. A credible launch offer sells reduced delivery risk and a verifiable operating system.
+
+## 5. Agent-assisted delivery contract
+
+The capstone team may assign agents to research, scaffold, implement, test, document, and prepare deployment artifacts. Assign one human owner to architecture, secrets, migrations, billing, security findings, and final release. Require every agent handoff to include changed files, assumptions, commands, failures, and rollback notes.
+
+## 6. Buyer-facing technical handoff
+
+Deliver an architecture diagram, environment matrix, runbook, threat model, data-retention statement, dependency inventory, backup evidence, CI status, deployment SHA, support boundary, and a recorded walkthrough. The buyer should be able to operate the system without access to the builder's personal accounts.
