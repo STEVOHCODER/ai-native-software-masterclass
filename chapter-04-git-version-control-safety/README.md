@@ -73,3 +73,36 @@ git diff HEAD~1..HEAD
 ```
 
 The learner passes when a bad AI mutation can be identified, reverted, and explained without losing unrelated work.
+
+## 6. GitHub CLI and agent authentication
+
+Install GitHub CLI:
+
+```powershell
+winget install --id GitHub.cli
+```
+
+```bash
+brew install gh
+```
+
+Authenticate interactively and verify the active account:
+
+```bash
+gh auth login
+gh auth status
+gh repo view --json name,url,defaultBranchRef
+```
+
+Use `gh auth setup-git` to configure HTTPS Git credentials. For agents, prefer a fine-grained token with repository-specific, read-only permissions. Store CI tokens as repository or environment secrets, never in `.gitconfig`, `.env`, or agent prompts.
+
+## 7. Remote branch protections
+
+```bash
+gh api --method PUT repos/OWNER/REPO/branches/main/protection \
+  -f required_status_checks='{"strict":true,"contexts":["verify"]}' \
+  -F enforce_admins=true -F required_linear_history=true \
+  -F allow_force_pushes=false -F allow_deletions=false
+```
+
+Review the generated policy in GitHub before applying it to a shared repository. An agent can open a pull request with `gh pr create`, but a human owns merge approval.
