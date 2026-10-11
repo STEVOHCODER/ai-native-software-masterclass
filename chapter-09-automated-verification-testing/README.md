@@ -47,3 +47,31 @@ Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail
 
 `self-correct.js` captures both output streams, writes a bounded artifact, and exits non-zero so the agent cannot report success after a failing command. Do not allow an agent to automatically weaken tests, delete diagnostics, or loop indefinitely; set a maximum attempt count in the orchestrator.
 
+## 5. Agent feedback loop
+
+The reliable loop is:
+
+```text
+task brief → agent diff → static checks → focused test → integration test
+→ security/accessibility checks → bounded diagnostics → human review
+```
+
+Persist each iteration's command, exit code, duration, changed files, and last diagnostic lines. Never feed an agent an entire secret-bearing log. Limit retries and stop when the same failure repeats.
+
+## 6. Cross-platform runner commands
+
+PowerShell:
+
+```powershell
+$env:TEST_COMMAND = 'pnpm'
+$env:TEST_ARGS = 'test'
+pnpm run self-correct
+```
+
+macOS/Linux:
+
+```bash
+TEST_COMMAND=pnpm TEST_ARGS=test pnpm run self-correct
+```
+
+For CI, use the workflow in `.github/workflows/quality.yml`; for local agent work, run the narrowest test first and expand only when it passes.
