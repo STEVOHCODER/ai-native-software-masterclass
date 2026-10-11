@@ -72,3 +72,54 @@ pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gate
 - Use a queue for long-running generations.
 - Verify a fallback model explicitly; “fallback” must not silently change safety or data residency requirements.
 
+## 6. Configuration locations
+
+Use `.env` for application secrets, a user-level CLI profile for developer defaults, and a checked-in provider-neutral TOML file for non-secret routing policy:
+
+| Surface | Windows | macOS/Linux |
+|---|---|---|
+| Project secrets | `%CD%\\.env` | `$PWD/.env` |
+| OpenAI CLI-style config | `%USERPROFILE%\\.config\\openai\\config.toml` | `~/.config/openai/config.toml` |
+| Continue config | `%USERPROFILE%\\.continue\\config.json` | `~/.continue/config.json` |
+| Shared model policy | `config/models.toml` | `config/models.toml` |
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.config\openai" | Out-Null
+Copy-Item .\chapter-02-api-infrastructure-gateways\openai-compatible.config.toml "$HOME\.config\openai\config.toml"
+```
+
+```bash
+mkdir -p ~/.config/openai
+cp chapter-02-api-infrastructure-gateways/openai-compatible.config.toml ~/.config/openai/config.toml
+chmod 600 ~/.config/openai/config.toml
+```
+
+The TOML file contains endpoints and model IDs, not API keys. Put secrets in the environment or OS credential manager.
+
+## 7. OpenAI-compatible handshake
+
+Every OpenAI-compatible router uses the same conceptual values:
+
+```text
+base_url = provider's /v1 endpoint
+api_key  = environment variable or secret-store lookup
+model    = provider's exact model identifier
+timeout  = finite request deadline
+```
+
+Test a router before wiring it into the application:
+
+```bash
+curl --fail --silent --show-error "$OPENAI_BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gpt-4.1-mini","messages":[{"role":"user","content":"Reply with OK"}],"temperature":0}'
+```
+
+PowerShell:
+
+```powershell
+$headers = @{ Authorization = "Bearer $env:OPENAI_API_KEY"; 'Content-Type' = 'application/json' }
+$body = @{ model = 'gpt-4.1-mini'; messages = @(@{ role = 'user'; content = 'Reply with OK' }); temperature = 0 } | ConvertTo-Json -Depth 5
+Invoke-RestMethod "$env:OPENAI_BASE_URL/chat/completions" -Headers $headers -Method Post -Body $body
+```

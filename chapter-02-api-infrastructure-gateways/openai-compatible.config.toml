@@ -1,0 +1,25 @@
+# Provider-neutral policy. Keep API keys outside this file.
+default_provider = "openai"
+timeout_ms = 30000
+max_attempts = 2
+cache_ttl_seconds = 30
+
+[providers.openai]
+base_url = "https://api.openai.com/v1"
+api_key_env = "OPENAI_API_KEY"
+model = "gpt-4.1-mini"
+
+[providers.openrouter]
+base_url = "https://openrouter.ai/api/v1"
+api_key_env = "OPENROUTER_API_KEY"
+model = "openai/gpt-4.1-mini"
+
+[providers.deepinfra]
+base_url = "https://api.deepinfra.com/v1/openai"
+api_key_env = "DEEPINFRA_API_KEY"
+model = "meta-llama/Meta-Llama-3.1-8B-Instruct"
+
+[providers.together]
+base_url = "https://api.together.xyz/v1"
+api_key_env = "TOGETHER_API_KEY"
+model = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
