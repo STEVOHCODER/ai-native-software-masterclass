@@ -71,3 +71,28 @@ Manual evidence:
 
 The learner can demonstrate a working responsive interface, explain the state transitions, and provide passing build/type/lint evidence.
 
+## Command annotations: what and why
+
+```bash
+pnpm create vite launchpad-web --template react-ts # Generate a real React + TypeScript project from Vite's template.
+cd launchpad-web                                      # Enter the generated application before installing its dependencies.
+pnpm install                                           # Resolve the generated package manifest and create/update its lockfile.
+pnpm add tailwindcss @tailwindcss/vite                # Add the utility CSS engine and its Vite integration.
+```
+
+The scaffold command creates the runnable frontend; Tailwind is installed rather than merely described so the agent has a real styling system to use.
+
+```text
+VITE_API_ORIGIN=http://127.0.0.1:3000                 # Public browser URL for the backend; never place a secret here.
+```
+
+`VITE_` variables are bundled into browser code. This is why the value may identify an API host but must never contain a provider key or database password.
+
+```bash
+pnpm run dev -- --host 127.0.0.1                      # Start Vite and bind development traffic only to the local machine.
+pnpm run typecheck                                     # Prove component props and API data are type-safe.
+pnpm run lint                                          # Detect code-quality and unsafe-pattern violations.
+pnpm run build                                         # Produce the production frontend bundle and catch build-only failures.
+```
+
+The browser actions are also tests: changing grid/list proves state control, stopping the API proves fallback behavior, resizing proves responsive layout, and Tab navigation proves keyboard access.

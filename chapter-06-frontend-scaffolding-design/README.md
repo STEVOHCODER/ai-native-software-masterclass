@@ -63,3 +63,7 @@ Return screenshots or exact visual verification steps.
 ```
 
 Ask the agent to produce a component tree and state map before changing code. Review the DOM, focus order, network calls, and mobile breakpoints rather than accepting a screenshot alone.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to have the configured agent build and verify the interface. Each scaffold/build command is annotated with what it creates and why; [`EXPLAINED.md`](EXPLAINED.md) explains the React state flow.
