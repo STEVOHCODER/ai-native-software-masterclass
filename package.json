@@ -1,0 +1,26 @@
+{
+  "name": "masterclass-hub",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test:concurrency": "node --test chapter-09-automated-verification-testing/concurrency.test.js",
+    "checkpoint": "node chapter-04-git-version-control-safety/agent-safety-commit.js --once"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.2",
+    "mongoose": "^8.13.2",
+    "react": "^19.1.0",
+    "typescript": "^5.8.3"
+  }
+}
+
