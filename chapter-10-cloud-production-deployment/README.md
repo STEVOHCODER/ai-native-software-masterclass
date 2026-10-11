@@ -90,3 +90,7 @@ vercel env add VITE_API_ORIGIN production
 ## 8. AI deployment-agent contract
 
 An agent may generate Dockerfiles, provider manifests, smoke-test scripts, and rollback instructions. It may not apply production migrations, rotate credentials, change DNS, or trigger a production deployment without a named human approval. Require the agent to print the Git SHA, image digest, environment, and rollback command before release.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to build the image, run its health check, and deploy when cloud credentials exist. Inline command comments explain the release sequence; [`EXPLAINED.md`](EXPLAINED.md) explains the container and provider flow.
