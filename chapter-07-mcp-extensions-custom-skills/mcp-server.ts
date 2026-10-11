@@ -1,12 +1,12 @@
-import { createInterface } from 'node:readline';
-import { readFile, readdir } from 'node:fs/promises';
-import { resolve, sep } from 'node:path';
+import { createInterface } from 'node:readline'; // Read one JSON-RPC request per line.
+import { readFile, readdir } from 'node:fs/promises'; // Use asynchronous filesystem operations.
+import { resolve, sep } from 'node:path'; // Canonicalize and safely compare paths.
 
 interface RpcRequest { readonly jsonrpc: '2.0'; readonly id?: number | string; readonly method: string; readonly params?: Record<string, unknown>; }
 interface RpcResponse { readonly jsonrpc: '2.0'; readonly id: number | string | null; readonly result?: unknown; readonly error?: { code: number; message: string }; }
-const root = resolve(process.env.MCP_DOCS_ROOT || process.cwd());
+const root = resolve(process.env.MCP_DOCS_ROOT || process.cwd()); // Define the only readable root.
 const allowed = (candidate: string): string => { const target = resolve(root, candidate); if (target !== root && !target.startsWith(`${root}${sep}`)) throw new Error('Path escapes documentation root'); return target; };
-const reply = (response: RpcResponse): void => {
+const reply = (response: RpcResponse): void => { // Keep stdout reserved for protocol responses.
   process.stdout.write(`${JSON.stringify(response)}\n`);
 };
 
