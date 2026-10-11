@@ -65,3 +65,28 @@ The deployment trigger must receive a signed webhook, verify the commit SHA, bui
 
 Record image digest, Git SHA, migration version, environment, operator, smoke-test output, and rollback target. A deployment is incomplete until `/health`, TLS, frontend asset loading, authenticated API behavior, and logs have been verified.
 
+## 7. Provider CLI matrix
+
+| Provider | Install | Verify | Deploy |
+|---|---|---|---|
+| Vercel | `npm i -g vercel` / `brew install vercel-cli` | `vercel whoami` | `vercel deploy --prod` |
+| Railway | official CLI installer | `railway whoami` | `railway up` |
+| Render | `brew install render` where supported or dashboard | `render workspace list` | service deploy hook |
+| Docker | Docker Desktop/Engine | `docker version` | registry push |
+| SnapDeploy | vendor CLI/webhook | vendor status command | signed release trigger |
+
+PowerShell and POSIX shells differ in environment assignment:
+
+```powershell
+$env:VITE_API_ORIGIN = 'https://api.example.com'
+vercel env add VITE_API_ORIGIN production
+```
+
+```bash
+export VITE_API_ORIGIN=https://api.example.com
+vercel env add VITE_API_ORIGIN production
+```
+
+## 8. AI deployment-agent contract
+
+An agent may generate Dockerfiles, provider manifests, smoke-test scripts, and rollback instructions. It may not apply production migrations, rotate credentials, change DNS, or trigger a production deployment without a named human approval. Require the agent to print the Git SHA, image digest, environment, and rollback command before release.
