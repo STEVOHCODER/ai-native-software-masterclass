@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactElement } from 'react';
 
 interface CourseProgress { readonly title: string; readonly progress: number; readonly lessons: number; }
 interface DashboardData { readonly greeting: string; readonly streak: number; readonly courses: readonly CourseProgress[]; }
@@ -14,7 +14,7 @@ const fallbackData: DashboardData = {
   ],
 };
 
-export default function App(): JSX.Element {
+export default function App(): ReactElement {
   const [layout, setLayout] = useState<Layout>(() => (localStorage.getItem('hub-layout') as Layout) || 'grid');
   const [data, setData] = useState<DashboardData>(fallbackData);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -57,7 +57,6 @@ export default function App(): JSX.Element {
   );
 }
 
-function Metric({ label, value }: { readonly label: string; readonly value: string }): JSX.Element {
+function Metric({ label, value }: { readonly label: string; readonly value: string }): ReactElement {
   return <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5"><p className="text-sm text-slate-400">{label}</p><p className="mt-2 text-2xl font-bold">{value}</p></div>;
 }
-
