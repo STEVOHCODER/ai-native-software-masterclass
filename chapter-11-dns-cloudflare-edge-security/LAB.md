@@ -6,13 +6,15 @@ Complete Lab 10 and own a domain or use the local-only verification path. Do not
 
 ## Installation
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Cloudflare.cloudflared
 ```
 
-These commands install the required developer tool through Homebrew on macOS.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install cloudflared
@@ -32,7 +34,8 @@ Set SSL/TLS to **Full (strict)**, enable HTTPS redirects, and keep API caching b
 
 ## Execution
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also inspect dns or tls evidence at the network boundary rather than assuming it is correct. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 cloudflared tunnel login
@@ -44,7 +47,8 @@ curl --fail --silent --show-error https://api.example.com/health
 
 Windows:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state.
+
+Run these commands to inspect DNS, TLS, or network connectivity directly and compare the observed result with the intended configuration.
 
 ```powershell
 Resolve-DnsName example.com
@@ -58,7 +62,8 @@ DNS resolves to the intended proxied services, certificates are valid, HTTPS red
 
 ## Verification
 
-These commands fetch the requested https resource or exercise the http endpoint while failing visibly on errors. They also inspect dns or tls evidence at the network boundary rather than assuming it is correct.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --head --location https://example.com
@@ -75,7 +80,8 @@ The learner can export current DNS, make one reversible change, verify DNS/TLS/H
 
 ## Command annotations: what and why
 
-These commands install the selected windows package so the required tool is available to later labs. They also inspect or prepare the local machine so the next operation has a known path and state.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Cloudflare.cloudflared                       # Install Cloudflare's tunnel/DNS diagnostic CLI.
@@ -84,7 +90,8 @@ Resolve-DnsName api.example.com                             # Verify the API hos
 Test-NetConnection api.example.com -Port 443               # Confirm TCP reachability to the HTTPS port.
 ```
 
-These commands install the required developer tool through homebrew on macos. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also inspect dns or tls evidence at the network boundary rather than assuming it is correct. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install cloudflared                                   # Install the Cloudflare CLI through Homebrew.

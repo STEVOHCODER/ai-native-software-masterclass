@@ -6,7 +6,8 @@ Complete Labs 01–11. Use Launchpad Hub or a narrowly scoped product of your ch
 
 ## Installation
 
-These commands create or select an isolated branch so experimental work does not modify the shared branch. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git switch -c feat/capstone-launch
@@ -48,7 +49,8 @@ Build in vertical slices:
 
 At each slice:
 
-These commands inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git diff --check
@@ -82,7 +84,8 @@ The learner can explain the architecture, reproduce the setup, show the agent's 
 
 ## Command annotations: what and why
 
-These commands create or select an isolated branch so experimental work does not modify the shared branch. They also install project dependencies using the selected package manager and its lockfile policy. They also inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git switch -c feat/capstone-launch                       # Isolate the final product work from main.

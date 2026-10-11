@@ -6,7 +6,8 @@ Complete Lab 01. Choose one provider with an account and development API key. A 
 
 ## Installation
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -18,7 +19,8 @@ Do not commit the resulting `.env` file.
 
 ## Configuration
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the cp step and verify its result before continuing.
 
 ```bash
 cp .env.example .env
@@ -26,7 +28,8 @@ cp .env.example .env
 
 Windows:
 
-These commands create, copy, or configure a real local file/path used by the tool. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the Copy-Item step and verify its result before continuing.
 
 ```powershell
 Copy-Item .env.example .env
@@ -53,7 +56,8 @@ For OpenRouter, set `OPENROUTER_API_KEY`; for DeepInfra use `DEEPINFRA_API_KEY`;
 
 First prove missing credentials fail safely:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 env -u OPENAI_API_KEY pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'hello'}]}).catch(e => console.log(e.message))"
@@ -61,7 +65,8 @@ env -u OPENAI_API_KEY pnpm exec tsx -e "import { complete } from './chapter-02-a
 
 PowerShell:
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:OPENAI_API_KEY = $null
@@ -70,7 +75,8 @@ pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gate
 
 Then run a live request only if the key is configured:
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'Return exactly the word READY'}]},{maxAttempts:1}).then(r => console.log(r.text)).catch(e => { console.error(e.message); process.exit(1) })"
@@ -82,7 +88,8 @@ Without a key, the command reports `Missing OPENAI_API_KEY` and makes no network
 
 ## Verification
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run typecheck
@@ -91,7 +98,8 @@ pnpm run lint
 
 Inspect the request with a local mock before using money:
 
-These commands run a Node.js script or diagnostic using the project runtime.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 node --input-type=module -e "const u=new URL('https://api.openai.com/v1/chat/completions'); console.log(u.origin+u.pathname)"
@@ -113,7 +121,8 @@ The learner can switch provider by changing the typed request and environment va
 
 ## Command annotations: what and why
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile                            # Install the repository's pinned dependencies without changing the lockfile.
@@ -122,7 +131,8 @@ pnpm add --save-dev tsx                                   # Install the TypeScri
 cp .env.example .env                                      # Create a private local environment file from the safe template.
 ```
 
-These commands create, copy, or configure a real local file/path used by the tool. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the Copy-Item step and verify its result before continuing.
 
 ```powershell
 Copy-Item .env.example .env                               # Copy the environment template on Windows.
@@ -131,14 +141,16 @@ notepad .env                                               # Open the actual pro
 
 The install commands prepare tooling; the copy commands create the real file the application reads. `.env` is ignored by Git and must contain development keys only.
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 env -u OPENAI_API_KEY pnpm exec tsx -e "..."              # Remove one key for this process and prove missing-key validation.
 pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'Return exactly the word READY'}]},{maxAttempts:1}).then(r => console.log(r.text)).catch(e => { console.error(e.message); process.exit(1) })" # Execute one bounded live gateway request.
 ```
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:OPENAI_API_KEY = $null                               # Remove the key only from the current PowerShell process.
@@ -147,7 +159,8 @@ pnpm exec tsx -e "..."                                    # Run the same missing
 
 The first probe must fail before networking; the second is the paid/external operation and is run only with explicit credentials.
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also run a node.js script or diagnostic using the project runtime.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run typecheck                                        # Verify provider adapters satisfy strict TypeScript contracts.

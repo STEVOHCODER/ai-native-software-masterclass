@@ -6,7 +6,8 @@ You will deploy the React frontend and Node API as repeatable artifacts, underst
 
 ## 1. Build locally like CI
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow. They also build the deployable container artifact from the repository and its dockerfile. They also start the local container with explicit name, environment, port, and lifecycle settings.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -20,7 +21,8 @@ docker run --rm --publish 3000:3000 --env ALLOWED_ORIGIN=http://localhost:5173 l
 
 Test the image in a second terminal:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail http://127.0.0.1:3000/health
@@ -28,7 +30,8 @@ curl --fail http://127.0.0.1:3000/health
 
 ## 2. Vercel frontend
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the npx step and verify its result before continuing.
 
 ```bash
 npx vercel login
@@ -53,7 +56,8 @@ Prefer Render's native Docker service configuration when available so the platfo
 
 ## 4. Railway
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the railway step and verify its result before continuing.
 
 ```bash
 railway login
@@ -85,14 +89,16 @@ Record image digest, Git SHA, migration version, environment, operator, smoke-te
 
 PowerShell and POSIX shells differ in environment assignment:
 
-These commands set a process environment variable so the next command receives explicit configuration. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the $env:VITE_API_ORIGIN step and verify its result before continuing.
 
 ```powershell
 $env:VITE_API_ORIGIN = 'https://api.example.com'
 vercel env add VITE_API_ORIGIN production
 ```
 
-These commands set a process environment variable so the next command receives explicit configuration. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to load the required configuration into the current process so the following tool can authenticate and use the selected service.
 
 ```bash
 export VITE_API_ORIGIN=https://api.example.com

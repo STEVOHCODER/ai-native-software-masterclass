@@ -17,7 +17,8 @@ You will create a closed loop in which an AI coding agent can change code, run d
 
 ## 2. Run the gates
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run lint
@@ -30,7 +31,8 @@ pnpm run security:audit
 
 Run the focused concurrency test directly while teaching:
 
-These commands run a Node.js script or diagnostic using the project runtime.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 node --test chapter-09-automated-verification-testing/concurrency.test.js
@@ -44,7 +46,8 @@ Extend the lab with a fourth request using an invalid progress value, a malforme
 
 ## 4. Self-correction protocol
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run self-correct
@@ -68,7 +71,8 @@ Persist each iteration's command, exit code, duration, changed files, and last d
 
 PowerShell:
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:TEST_COMMAND = 'pnpm'
@@ -78,7 +82,8 @@ pnpm run self-correct
 
 macOS/Linux:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 TEST_COMMAND=pnpm TEST_ARGS=test pnpm run self-correct

@@ -6,14 +6,16 @@ Complete Lab 09 and create accounts only for a provider you intend to use. A loc
 
 ## Installation
 
-These commands install the selected windows package so the required tool is available to later labs. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Docker.DockerDesktop
 npm install --global vercel
 ```
 
-These commands install the required developer tool through homebrew on macos. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install --cask docker
@@ -26,7 +28,8 @@ For Railway use its official CLI installer; for Render use the dashboard or supp
 
 Build and run the API image:
 
-These commands build the deployable container artifact from the repository and its dockerfile. They also start the local container with explicit name, environment, port, and lifecycle settings.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```bash
 docker build --tag launchpad-api:lab --file chapter-10-cloud-production-deployment/Dockerfile .
@@ -35,7 +38,8 @@ docker run --rm --publish 3000:3000 --env ALLOWED_ORIGIN=http://localhost:5173 l
 
 In another terminal:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail http://127.0.0.1:3000/health
@@ -43,7 +47,8 @@ curl --fail http://127.0.0.1:3000/health
 
 Vercel:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the vercel step and verify its result before continuing.
 
 ```bash
 vercel login
@@ -79,14 +84,16 @@ The learner has a reproducible image, a passing health check, and either a verif
 
 ## Command annotations: what and why
 
-These commands install the selected windows package so the required tool is available to later labs. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Docker.DockerDesktop                       # Install the local container engine on Windows.
 npm install --global vercel                                # Install the Vercel deployment CLI in the global npm prefix.
 ```
 
-These commands install the required developer tool through homebrew on macos. They also install project dependencies using the selected package manager and its lockfile policy. They also build the deployable container artifact from the repository and its dockerfile. They also start the local container with explicit name, environment, port, and lifecycle settings. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install --cask docker                                # Install Docker Desktop on macOS.

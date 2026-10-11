@@ -18,7 +18,8 @@ Map this concept to each tool's native setting rather than copying the JSON blin
 
 PowerShell user-scoped values:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the [Environment]::SetEnvironmentVariable('OPENAI_API_KEY', step and verify its result before continuing.
 
 ```powershell
 [Environment]::SetEnvironmentVariable('OPENAI_API_KEY', 'use-your-secret-manager', 'User')
@@ -29,7 +30,8 @@ Do not use the command above with a literal production key in a recorded lesson.
 
 macOS/Linux session values:
 
-These commands set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to load the required configuration into the current process so the following tool can authenticate and use the selected service.
 
 ```bash
 export OPENAI_API_KEY="$(security find-generic-password -a "$USER" -s launchpad-openai -w)"

@@ -6,7 +6,8 @@ Complete Labs 01–05. The learner should have the agent configured and a backen
 
 ## Installation
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or prepare the local machine so the next operation has a known path and state. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm create vite launchpad-web --template react-ts
@@ -35,7 +36,8 @@ Do not add a component library. Run typecheck, lint, and build.
 
 ## Execution
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run dev -- --host 127.0.0.1
@@ -49,7 +51,8 @@ The dashboard renders course cards, layout controls change the arrangement, a fa
 
 ## Verification
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run typecheck
@@ -79,7 +82,8 @@ The learner can demonstrate a working responsive interface, explain the state tr
 
 ## Command annotations: what and why
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or prepare the local machine so the next operation has a known path and state. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm create vite launchpad-web --template react-ts # Generate a real React + TypeScript project from Vite's template.
@@ -96,7 +100,8 @@ VITE_API_ORIGIN=http://127.0.0.1:3000                 # Public browser URL for t
 
 `VITE_` variables are bundled into browser code. This is why the value may identify an API host but must never contain a provider key or database password.
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run dev -- --host 127.0.0.1                      # Start Vite and bind development traffic only to the local machine.

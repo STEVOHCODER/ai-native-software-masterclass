@@ -6,7 +6,8 @@ You will build a narrowly scoped MCP server that gives an AI coding agent safe a
 
 ## 1. Install the MCP development toolchain
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm add @modelcontextprotocol/sdk
@@ -15,14 +16,16 @@ pnpm add -D tsx typescript
 
 Run the local server with an explicit documentation root:
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:MCP_DOCS_ROOT = (Resolve-Path .).Path
 pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
 ```
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
@@ -44,7 +47,8 @@ The process uses line-delimited JSON-RPC over standard input/output. Do not prin
 
 Send an initialize request from a second terminal:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts

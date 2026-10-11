@@ -15,7 +15,8 @@ Approver:
 
 ## Smoke tests
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail --silent --show-error https://api.example.com/health
@@ -24,7 +25,8 @@ curl --fail --silent --show-error --head https://app.example.com
 
 PowerShell:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the Invoke-WebRequest step and verify its result before continuing.
 
 ```powershell
 Invoke-WebRequest https://api.example.com/health -UseBasicParsing

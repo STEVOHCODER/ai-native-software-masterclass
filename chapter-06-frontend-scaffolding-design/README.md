@@ -6,7 +6,8 @@ You will turn the backend contract into a responsive, keyboard-accessible produc
 
 ## 1. Scaffold a real React application
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or prepare the local machine so the next operation has a known path and state. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm create vite launchpad-web --template react-ts
@@ -43,7 +44,8 @@ The dashboard must handle:
 
 ## 4. Browser verification
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run build

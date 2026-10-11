@@ -6,7 +6,8 @@ You will construct a secure Express API from request boundary to persistence bou
 
 ## 1. Install and run
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -15,7 +16,8 @@ pnpm start
 
 PowerShell:
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:PORT = '3000'
@@ -25,7 +27,8 @@ pnpm start
 
 Verify the process:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail http://127.0.0.1:3000/health
@@ -47,7 +50,8 @@ The in-memory map is a teaching adapter. In a multi-process deployment, replace 
 
 ## 3. Exercise: observe optimistic locking
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --request PATCH http://127.0.0.1:3000/api/progress/course-progress \
@@ -84,7 +88,8 @@ The route must not contain database queries, provider calls, or secret reads. Co
 
 Windows PowerShell:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```powershell
 $payload = @{ progress = 50; __v = 0 } | ConvertTo-Json
@@ -95,7 +100,8 @@ Invoke-RestMethod http://127.0.0.1:3000/api/progress/course-progress `
 
 macOS/Linux:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail-with-body --request PATCH http://127.0.0.1:3000/api/progress/course-progress \

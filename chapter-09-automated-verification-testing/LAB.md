@@ -6,7 +6,8 @@ Complete Lab 08. Work on a branch and save the current passing test output.
 
 ## Installation
 
-These commands install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -16,14 +17,16 @@ pnpm install --frozen-lockfile
 
 Set a bounded self-correction command:
 
-These commands set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:TEST_COMMAND = 'pnpm'
 $env:TEST_ARGS = 'test'
 ```
 
-These commands set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 export TEST_COMMAND=pnpm
@@ -43,7 +46,8 @@ changed files, and final commands.
 
 Run:
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run self-correct
@@ -52,7 +56,8 @@ Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail
 
 macOS/Linux:
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run self-correct
@@ -65,7 +70,8 @@ The agent identifies the failed assertion, fixes implementation or fixture based
 
 ## Verification
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run lint
@@ -84,7 +90,8 @@ The learner can reproduce a failure, preserve the acceptance criterion, use boun
 
 ## Command annotations: what and why
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 $env:TEST_COMMAND = 'pnpm'                              # Tell the self-correction runner which executable to start.
@@ -93,7 +100,8 @@ pnpm run self-correct                                    # Capture output, write
 Get-Content chapter-09-automated-verification-testing/last-diagnostics.log -Tail 80 # Read only the latest bounded diagnostic lines.
 ```
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 export TEST_COMMAND=pnpm                                 # Select pnpm without hard-coding it into the runner.

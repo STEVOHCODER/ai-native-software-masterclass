@@ -2,7 +2,8 @@
 
 ## Local service lifecycle
 
-These commands inspect or operate the local container runtime used by the course.
+
+Run these Docker commands to build, start, inspect, or diagnose the reproducible local service used by this lab.
 
 ```powershell
 docker start launchpad-postgres launchpad-mongo
@@ -10,7 +11,8 @@ docker ps --filter "name=launchpad"
 docker logs --tail 50 launchpad-postgres
 ```
 
-These commands inspect or operate the local container runtime used by the course.
+
+Run these Docker commands to build, start, inspect, or diagnose the reproducible local service used by this lab.
 
 ```bash
 docker start launchpad-postgres launchpad-mongo

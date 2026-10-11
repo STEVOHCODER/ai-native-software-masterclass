@@ -8,7 +8,8 @@ You will model identity, tenancy, course progress, entitlements, audit history, 
 
 Local Postgres for repeatable SQL practice:
 
-These commands start the local container with explicit name, environment, port, and lifecycle settings.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```bash
 docker run --name launchpad-postgres --detach \
@@ -20,7 +21,8 @@ docker run --name launchpad-postgres --detach \
 
 Local MongoDB for telemetry practice:
 
-These commands start the local container with explicit name, environment, port, and lifecycle settings.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```bash
 docker run --name launchpad-mongo --detach \
@@ -31,7 +33,8 @@ Hosted alternative: create a Supabase project and a MongoDB Atlas cluster, restr
 
 ## 2. Apply the relational schema
 
-These commands use the database CLI to apply, inspect, or verify state in the selected environment.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```bash
 psql "$DATABASE_URL" --set ON_ERROR_STOP=1 --file chapter-05-database-architecture-state/supabase-schema.sql
@@ -61,7 +64,8 @@ Do not use telemetry as an authorization source. Do not put mutable billing trut
 
 ## 4. Mongoose telemetry lab
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm exec tsx -e "import { TelemetryModel } from './chapter-05-database-architecture-state/mongoose-model.ts'; console.log(TelemetryModel.schema.indexes())"
@@ -71,7 +75,8 @@ The model rejects unknown top-level fields, bounds property count, validates eve
 
 ## 5. Migration and backup drill
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the pg_dump step and verify its result before continuing.
 
 ```bash
 pg_dump "$DATABASE_URL" --format=custom --file=backup.dump
@@ -85,14 +90,16 @@ Test restore into a separate database. Record recovery point objective, recovery
 
 Supabase CLI options:
 
-These commands install the selected windows package so the required tool is available to later labs. They also install the developer tool through scoop without requiring machine-wide installation.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Supabase.CLI
 scoop install supabase
 ```
 
-These commands install the required developer tool through homebrew on macos. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install supabase/tap/supabase
@@ -101,7 +108,8 @@ npx supabase --version
 
 Authenticate without putting a token in shell history:
 
-These commands set a process environment variable so the next command receives explicit configuration. They also use the database cli to apply, inspect, or verify state in the selected environment.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```powershell
 $env:SUPABASE_ACCESS_TOKEN = Read-Host 'Supabase token'
@@ -110,7 +118,8 @@ supabase link --project-ref <project-ref>
 supabase db push
 ```
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use the database cli to apply, inspect, or verify state in the selected environment.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```bash
 read -rsp 'Supabase token: ' SUPABASE_ACCESS_TOKEN; export SUPABASE_ACCESS_TOKEN; echo
@@ -120,13 +129,15 @@ supabase db push
 
 MongoDB tools:
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install MongoDB.Server MongoDB.Shell
 ```
 
-These commands install the required developer tool through homebrew on macos. They also use the database cli to apply, inspect, or verify state in the selected environment.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install mongosh mongodb-atlas
@@ -155,7 +166,8 @@ Connect an agent to a **read-only** database MCP server first. The MCP configura
 
 PowerShell registration for an agent that supports JSON configuration:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```powershell
 $config = "$HOME\.continue\config.json"

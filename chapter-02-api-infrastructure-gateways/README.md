@@ -6,7 +6,8 @@ You will build an AI provider boundary that can switch models without changing p
 
 ## 1. Install and configure
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm add @anthropic-ai/sdk openai @google/generative-ai
@@ -15,7 +16,8 @@ pnpm add -D tsx typescript
 
 Create a local `.env` from the root example and set only the provider keys you actually use:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the cp step and verify its result before continuing.
 
 ```bash
 cp .env.example .env
@@ -23,7 +25,8 @@ cp .env.example .env
 
 Windows PowerShell:
 
-These commands create, copy, or configure a real local file/path used by the tool. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the Copy-Item step and verify its result before continuing.
 
 ```powershell
 Copy-Item .env.example .env
@@ -59,7 +62,8 @@ Do not retry invalid requests, authentication failures, content policy failures,
 
 ## 4. Exercise: build a model selector
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'Give one concise product idea'}]}).then(console.log).catch((error) => { console.error(error.message); process.exit(1); })"
@@ -67,7 +71,8 @@ pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gate
 
 Test without spending tokens by omitting keys:
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm exec tsx -e "import { complete } from './chapter-02-api-infrastructure-gateways/api-client.ts'; complete({provider:'openai',model:'gpt-4.1-mini',messages:[{role:'user',content:'hello'}]}).catch((error) => console.log(error.message))"
@@ -97,14 +102,16 @@ Use `.env` for application secrets, a user-level CLI profile for developer defau
 | Continue config | `%USERPROFILE%\\.continue\\config.json` | `~/.continue/config.json` |
 | Shared model policy | `config/models.toml` | `config/models.toml` |
 
-These commands create, copy, or configure a real local file/path used by the tool.
+
+Run these commands to complete the New-Item step and verify its result before continuing.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\.config\openai" | Out-Null
 Copy-Item .\chapter-02-api-infrastructure-gateways\openai-compatible.config.toml "$HOME\.config\openai\config.toml"
 ```
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the mkdir step and verify its result before continuing.
 
 ```bash
 mkdir -p ~/.config/openai
@@ -127,7 +134,8 @@ timeout  = finite request deadline
 
 Test a router before wiring it into the application:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail --silent --show-error "$OPENAI_BASE_URL/chat/completions" \
@@ -138,7 +146,8 @@ curl --fail --silent --show-error "$OPENAI_BASE_URL/chat/completions" \
 
 PowerShell:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```powershell
 $headers = @{ Authorization = "Bearer $env:OPENAI_API_KEY"; 'Content-Type' = 'application/json' }

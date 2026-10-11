@@ -19,7 +19,8 @@ Launchpad Hub is a twelve-chapter curriculum for building and launching AI-assis
 
 ## Fast start
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -55,7 +56,8 @@ The project is cumulative. Labs 01–04 establish the workstation, AI gateway, a
 
 Validate the lab structure before publishing course material:
 
-These commands run a Node.js script or diagnostic using the project runtime.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 node scripts/validate-labs.js

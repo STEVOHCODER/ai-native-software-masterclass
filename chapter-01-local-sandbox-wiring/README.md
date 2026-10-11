@@ -14,7 +14,8 @@ Use a 64-bit machine with at least 8 GB RAM, 20 GB free disk space, and a curren
 
 Open a non-administrator PowerShell window:
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install --id Microsoft.PowerShell --source winget
@@ -24,7 +25,8 @@ winget install --id Microsoft.VisualStudioCode --source winget
 
 Start PowerShell 7, then install Scoop and the runtimes:
 
-These commands create, copy, or configure a real local file/path used by the tool. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior. They also install the developer tool through scoop without requiring machine-wide installation. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands in PowerShell to configure Scoop and install developer tools without requiring machine-wide package installation.
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
@@ -39,7 +41,8 @@ corepack prepare pnpm@10.6.2 --activate
 
 Verify both command discovery and versions:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also run a node.js script or diagnostic using the project runtime. They also run the project tool through the configured package-manager/runtime workflow. They also run python for an isolated utility, configuration check, or environment verification. They also inspect or change version-controlled project state in an auditable way. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in PowerShell to configure Scoop and install developer tools without requiring machine-wide package installation.
 
 ```powershell
 Get-Command node, npm, pnpm, python, pip, git, scoop | Select-Object Name, Source
@@ -56,7 +59,8 @@ If `python` opens the Microsoft Store, disable the Python App Execution Alias in
 
 Create a virtual environment for Python utilities:
 
-These commands run python for an isolated utility, configuration check, or environment verification. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to create or use the Python environment, install its dependencies, and verify the interpreter configuration.
 
 ```powershell
 python -m venv .venv
@@ -70,7 +74,8 @@ deactivate
 
 Install Apple's command-line tools and Homebrew:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 xcode-select --install
@@ -79,7 +84,8 @@ xcode-select --install
 
 Configure both Apple Silicon and Intel paths:
 
-These commands evaluate a local prerequisite or branch condition before continuing the setup. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also install the required developer tool through homebrew on macos. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 if [ -x /opt/homebrew/bin/brew ]; then
@@ -97,7 +103,8 @@ corepack prepare pnpm@10.6.2 --activate
 
 Verify:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also run a node.js script or diagnostic using the project runtime. They also run python for an isolated utility, configuration check, or environment verification.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 command -v node npm pnpm python3 pip3 git brew
@@ -108,7 +115,8 @@ python3 -c 'import ssl; print(ssl.OPENSSL_VERSION)'
 
 ## 4. Linux installation (Ubuntu/Debian)
 
-These commands refresh linux package metadata so installation uses current package indexes. They also install the runtime or system dependency required by the next lab step. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors. They also run the project tool through the configured package-manager/runtime workflow. They also run a node.js script or diagnostic using the project runtime.
+
+Run these commands on Ubuntu or Debian to refresh package metadata, install the required tools, and verify their versions.
 
 ```bash
 sudo apt-get update
@@ -126,7 +134,8 @@ For production servers, pin the Node major version through the image or version 
 
 PowerShell 5.1 can be configured for TLS 1.2 when a legacy bootstrap requires it:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the [Net.ServicePointManager]::SecurityProtocol step and verify its result before continuing.
 
 ```powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -134,7 +143,8 @@ These commands execute this lab step; the surrounding explanation defines its ex
 
 PowerShell 7 uses the operating system's modern TLS stack; verify negotiation rather than disabling certificate checks:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the $request step and verify its result before continuing.
 
 ```powershell
 $request = [Net.HttpWebRequest]::Create('https://example.com')
@@ -143,7 +153,8 @@ $request.GetResponse().Close()
 
 On macOS/Linux, require TLS 1.2 or newer for scripted downloads:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --proto '=https' --tlsv1.2 --fail --silent --show-error --location https://example.com/robots.txt
@@ -153,7 +164,8 @@ Never use `--insecure`, `-SkipCertificateCheck`, or an unverified `eval` of down
 
 ## 6. Clone and initialize the course workspace
 
-These commands create, copy, or configure a real local file/path used by the tool. They also copy the cumulative course repository and its history onto this computer.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```powershell
 # Windows
@@ -162,7 +174,8 @@ git clone <repository-url> testing-qwen
 Set-Location .\testing-qwen\masterclass-hub
 ```
 
-These commands copy the cumulative course repository and its history onto this computer. They also inspect or prepare the local machine so the next operation has a known path and state.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 # macOS/Linux
@@ -172,7 +185,8 @@ cd testing-qwen/masterclass-hub
 
 Install the reproducible dependency graph:
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -188,7 +202,8 @@ Run `.\environment-setup.ps1 -Json` on Windows or repeat the equivalent commands
 
 `winget` is Microsoft's package manager and is normally delivered through **App Installer** on supported Windows 10/11 systems. Confirm it before using it:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also inspect or operate the windows package manager before changing the workstation.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 Get-Command winget
@@ -205,7 +220,8 @@ If it is missing, update **App Installer** from Microsoft Store, or use one of t
 
 Alternative Windows installations:
 
-These commands create, copy, or configure a real local file/path used by the tool. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior. They also install the developer tool through scoop without requiring machine-wide installation.
+
+Run these commands in PowerShell to configure Scoop and install developer tools without requiring machine-wide package installation.
 
 ```powershell
 # Chocolatey (PowerShell as Administrator)
@@ -225,7 +241,8 @@ Start-Process msiexec.exe -Wait -ArgumentList '/i', '.\node-v22.14.0-x64.msi'
 
 Prefer a version manager when learners need multiple projects:
 
-These commands install the selected windows package so the required tool is available to later labs. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 # fnm via winget
@@ -235,7 +252,8 @@ fnm install 22
 fnm use 22
 ```
 
-These commands fetch the requested https resource or exercise the http endpoint while failing visibly on errors. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 # macOS/Linux with nvm
@@ -247,13 +265,15 @@ corepack enable
 
 The course uses Corepack-pinned pnpm where possible. When Corepack is unavailable:
 
-These commands install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 npm install --global pnpm@10.6.2
 ```
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 sudo npm install --global pnpm@10.6.2

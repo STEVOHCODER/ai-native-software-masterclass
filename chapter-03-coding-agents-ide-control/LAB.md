@@ -4,7 +4,8 @@
 
 Complete Labs 01–02. Create a disposable branch:
 
-These commands create or select an isolated branch so experimental work does not modify the shared branch.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git switch -c lab/agent-controlled-change
@@ -18,7 +19,8 @@ Choose one terminal agent and one editor extension. The commands below show comm
 
 Windows PowerShell:
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also install the selected windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 npm install --global @openai/codex
@@ -28,7 +30,8 @@ winget install --id GitHub.cli
 
 macOS/Linux:
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also install the required developer tool through homebrew on macos.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 npm install --global @openai/codex
@@ -40,7 +43,8 @@ For Claude Code, use the official installer from the Claude developer site; for 
 
 ### VS Code extensions
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the code step and verify its result before continuing.
 
 ```powershell
 code --install-extension continue.continue
@@ -49,7 +53,8 @@ code --install-extension RooVeterinaryInc.roo-cline
 code --install-extension GitHub.copilot
 ```
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the code step and verify its result before continuing.
 
 ```bash
 code --install-extension continue.continue
@@ -62,14 +67,16 @@ code --install-extension GitHub.copilot
 
 Create user directories:
 
-These commands create, copy, or configure a real local file/path used by the tool.
+
+Run these commands to complete the New-Item step and verify its result before continuing.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\.continue", "$HOME\.codex", "$HOME\.config\opencode" | Out-Null
 Copy-Item .\chapter-03-coding-agents-ide-control\continue-config.json "$HOME\.continue\config.json"
 ```
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the mkdir step and verify its result before continuing.
 
 ```bash
 mkdir -p ~/.continue ~/.codex ~/.config/opencode
@@ -78,7 +85,8 @@ cp chapter-03-coding-agents-ide-control/continue-config.json ~/.continue/config.
 
 Open the copied file manually in VS Code and select either the local Ollama model or cloud model. For a local model:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the ollama step and verify its result before continuing.
 
 ```bash
 ollama pull qwen2.5-coder:7b
@@ -87,13 +95,15 @@ ollama pull nomic-embed-text
 
 Verify the JSON:
 
-These commands read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to complete the Get-Content step and verify its result before continuing.
 
 ```powershell
 Get-Content "$HOME\.continue\config.json" -Raw | ConvertFrom-Json | Out-Null
 ```
 
-These commands run Python for an isolated utility, configuration check, or environment verification.
+
+Run these commands to complete the python3 step and verify its result before continuing.
 
 ```bash
 python3 -m json.tool ~/.continue/config.json >/dev/null
@@ -113,7 +123,8 @@ Return the diff and the exact command output.
 
 Then inspect:
 
-These commands inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git diff -- chapter-09-automated-verification-testing/concurrency.test.js
@@ -127,7 +138,8 @@ The agent adds one focused test, runs it successfully, and changes no other file
 
 ## Verification
 
-These commands inspect or change version-controlled project state in an auditable way.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git status --short
@@ -151,7 +163,8 @@ The agent launches, reads the repository, completes the bounded test task, and t
 
 ## Command annotations: what and why
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also install the selected windows package so the required tool is available to later labs. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 npm install --global @openai/codex                         # Install the Codex terminal agent in the global npm prefix.
@@ -163,7 +176,8 @@ code --install-extension RooVeterinaryInc.roo-cline         # Install Roo Code f
 code --install-extension GitHub.copilot                     # Install GitHub Copilot's editor integration.
 ```
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also install the required developer tool through homebrew on macos. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 npm install --global @openai/codex                         # Install the Codex command on macOS/Linux.
@@ -174,7 +188,8 @@ code --install-extension continue.continue                 # Install Continue fr
 
 Global npm installation makes the CLI discoverable outside one project; editor installation makes the agent available inside the IDE. Neither command gives the tool permission to deploy or read secrets.
 
-These commands create, copy, or configure a real local file/path used by the tool. They also read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to complete the New-Item step and verify its result before continuing.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\.continue", "$HOME\.codex", "$HOME\.config\opencode" | Out-Null # Create real per-user config folders.
@@ -182,7 +197,8 @@ Copy-Item .\chapter-03-coding-agents-ide-control\continue-config.json "$HOME\.co
 Get-Content "$HOME\.continue\config.json" -Raw | ConvertFrom-Json | Out-Null # Parse JSON and fail if the configuration is malformed.
 ```
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also run python for an isolated utility, configuration check, or environment verification.
+
+Run these commands to complete the mkdir step and verify its result before continuing.
 
 ```bash
 mkdir -p ~/.continue ~/.codex ~/.config/opencode         # Create the equivalent Unix configuration folders.
@@ -194,7 +210,8 @@ ollama pull nomic-embed-text                              # Download a local emb
 
 The user-level path matters: the editor reads it only after restart, while the repository keeps the template reviewable. Local model downloads are optional and consume disk.
 
-These commands create or select an isolated branch so experimental work does not modify the shared branch. They also inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git switch -c lab/agent-controlled-change                    # Isolate the agent experiment from main.

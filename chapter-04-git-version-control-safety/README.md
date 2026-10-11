@@ -6,7 +6,8 @@ You will protect source history while allowing fast AI-assisted iteration. The l
 
 ## 1. One-time repository setup
 
-These commands set the Git behavior needed for reproducible collaboration and agent review.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git config --global init.defaultBranch main
@@ -22,7 +23,8 @@ If signing is unavailable on a training machine, document the exception and enfo
 
 ## 2. Branch workflow
 
-These commands create or select an isolated branch so experimental work does not modify the shared branch. They also inspect or change version-controlled project state in an auditable way.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git switch main
@@ -34,7 +36,8 @@ git diff --check
 
 Commit small, coherent slices:
 
-These commands inspect or change version-controlled project state in an auditable way.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git add chapter-08-backend-pipelines-concurrency/server.js
@@ -48,7 +51,8 @@ Never use `git push --force` on shared branches. To recover a bad local commit, 
 
 `agent-safety-commit.js` is a local guardrail, not a replacement for code review. Run it once in an agent hook or continuously during a risky refactor:
 
-These commands run a Node.js script or diagnostic using the project runtime.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 node chapter-04-git-version-control-safety/agent-safety-commit.js --once
@@ -61,7 +65,8 @@ The watcher refuses obvious secret extensions, excludes generated directories, p
 
 Require these checks on `main`:
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -75,7 +80,8 @@ Protect `main`, require one human approval, require conversations to be resolved
 
 ## 5. Recovery lab
 
-These commands inspect or change version-controlled project state in an auditable way.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git log --oneline --decorate --graph -12
@@ -94,13 +100,15 @@ Run [`LAB.md`](LAB.md) for the recovery drill. Every Git/GitHub command is annot
 
 Install GitHub CLI:
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install --id GitHub.cli
 ```
 
-These commands install the required developer tool through Homebrew on macOS.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install gh
@@ -108,7 +116,8 @@ brew install gh
 
 Authenticate interactively and verify the active account:
 
-These commands use the authenticated GitHub CLI for repository, pull-request, or release operations.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 gh auth login
@@ -120,7 +129,8 @@ Use `gh auth setup-git` to configure HTTPS Git credentials. For agents, prefer a
 
 ## 7. Remote branch protections
 
-These commands use the authenticated GitHub CLI for repository, pull-request, or release operations.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 gh api --method PUT repos/OWNER/REPO/branches/main/protection \

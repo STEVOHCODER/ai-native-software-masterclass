@@ -12,7 +12,8 @@ Choose one path, then run the verification block for your operating system.
 
 `winget` is delivered through Microsoft's **App Installer**. Open Microsoft Store, search for **App Installer**, install/update it, then open PowerShell:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also inspect or operate the windows package manager before changing the workstation. They also install the selected windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 Get-Command winget
@@ -27,7 +28,8 @@ winget install --id GitHub.cli --exact
 
 ### Windows: Scoop alternative
 
-These commands create, copy, or configure a real local file/path used by the tool. They also use powershell to download or call the service with explicit error behavior. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also install the developer tool through scoop without requiring machine-wide installation.
+
+Run these commands in PowerShell to configure Scoop and install developer tools without requiring machine-wide package installation.
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force
@@ -38,7 +40,8 @@ scoop install git nodejs-lts python vscode docker gh
 
 ### macOS: Homebrew
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also install the required developer tool through homebrew on macos.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 xcode-select --install
@@ -49,7 +52,8 @@ brew install --cask visual-studio-code docker
 
 ### Ubuntu/Debian
 
-These commands refresh linux package metadata so installation uses current package indexes. They also install the runtime or system dependency required by the next lab step. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands on Ubuntu or Debian to refresh package metadata, install the required tools, and verify their versions.
 
 ```bash
 sudo apt-get update
@@ -63,7 +67,8 @@ sudo snap install code --classic
 
 Enable pnpm through Corepack and create the project workspace:
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also create, copy, or configure a real local file/path used by the tool.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 # Windows PowerShell
@@ -73,7 +78,8 @@ New-Item -ItemType Directory -Force "$HOME\src\launchpad-hub" | Out-Null
 Set-Location "$HOME\src\launchpad-hub"
 ```
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or prepare the local machine so the next operation has a known path and state.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 # macOS/Linux
@@ -85,7 +91,8 @@ cd "$HOME/src/launchpad-hub"
 
 Configure a safe Git identity and user-level execution policy:
 
-These commands set the git behavior needed for reproducible collaboration and agent review. They also create, copy, or configure a real local file/path used by the tool.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```powershell
 git config --global init.defaultBranch main
@@ -93,7 +100,8 @@ git config --global pull.rebase true
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force
 ```
 
-These commands set the Git behavior needed for reproducible collaboration and agent review.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git config --global init.defaultBranch main
@@ -104,7 +112,8 @@ git config --global pull.rebase true
 
 Clone the published course and run its environment audit:
 
-These commands copy the cumulative course repository and its history onto this computer. They also inspect or prepare the local machine so the next operation has a known path and state. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git clone https://github.com/STEVOHCODER/ai-native-software-masterclass.git
@@ -114,7 +123,8 @@ pnpm install --frozen-lockfile
 
 Windows:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the .\chapter-01-local-sandbox-wiring\environment-setup.ps1 step and verify its result before continuing.
 
 ```powershell
 .\chapter-01-local-sandbox-wiring\environment-setup.ps1 -Json
@@ -122,7 +132,8 @@ These commands execute this lab step; the surrounding explanation defines its ex
 
 macOS/Linux:
 
-These commands run a node.js script or diagnostic using the project runtime. They also run python for an isolated utility, configuration check, or environment verification. They also inspect or change version-controlled project state in an auditable way. They also inspect or operate the local container runtime used by the course. They also use the authenticated github cli for repository, pull-request, or release operations.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 node --version
@@ -138,7 +149,8 @@ The audit prints paths for Node, npm, pnpm, Python, Git, Docker, Scoop/Winget wh
 
 ## Verification
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or change version-controlled project state in an auditable way.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 pnpm run validate:environment
@@ -147,7 +159,8 @@ git diff --exit-code
 
 Create a Python isolation check:
 
-These commands run Python for an isolated utility, configuration check, or environment verification.
+
+Run these commands to complete the python3 step and verify its result before continuing.
 
 ```bash
 python3 -m venv .venv-lab
@@ -155,7 +168,8 @@ python3 -m venv .venv-lab
 
 Windows:
 
-These commands run python for an isolated utility, configuration check, or environment verification. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also remove only the named temporary lab artifact after its verification is complete.
+
+Run these commands to create or use the Python environment, install its dependencies, and verify the interpreter configuration.
 
 ```powershell
 python -m venv .venv-lab
@@ -182,7 +196,8 @@ You may continue only when the required runtimes resolve, the repository install
 
 The comments below are intentionally next to the commands learners execute.
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also inspect or operate the windows package manager before changing the workstation. They also install the selected windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 Get-Command winget                                      # Locate WinGet and show the executable PowerShell will run.
@@ -197,7 +212,8 @@ winget install --id GitHub.cli --exact                  # Install gh for authent
 
 `winget` is available because Microsoft App Installer supplies it; updating App Installer fixes the common “command not found” failure. The exact IDs prevent a similarly named package from being selected.
 
-These commands create, copy, or configure a real local file/path used by the tool. They also use powershell to download or call the service with explicit error behavior. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also install the developer tool through scoop without requiring machine-wide installation.
+
+Run these commands in PowerShell to configure Scoop and install developer tools without requiring machine-wide package installation.
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force # Permit local scripts while requiring signatures for downloaded scripts.
@@ -208,7 +224,8 @@ scoop install git nodejs-lts python vscode docker gh     # Install the same tool
 
 `RemoteSigned` is scoped to the current user so the lesson does not weaken the whole machine. Review a downloaded installer before executing it; the command is convenient, not a substitute for source verification.
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also install the required developer tool through homebrew on macos. They also refresh linux package metadata so installation uses current package indexes. They also install the runtime or system dependency required by the next lab step. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 xcode-select --install                                  # Install Apple's compiler tools required by Homebrew and native packages.
@@ -223,7 +240,8 @@ sudo snap install code --classic                        # Install VS Code from S
 
 The macOS commands install prerequisites before Homebrew packages. The Linux commands refresh metadata, install build tools, add a pinned Node major version, then install the editor; the order prevents missing compiler or package-index errors.
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also create, copy, or configure a real local file/path used by the tool.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 corepack enable                                          # Create package-manager shims managed by the installed Node runtime.
@@ -232,7 +250,8 @@ New-Item -ItemType Directory -Force "$HOME\src\launchpad-hub" | Out-Null # Creat
 Set-Location "$HOME\src\launchpad-hub"                  # Make the new workspace the current directory.
 ```
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or prepare the local machine so the next operation has a known path and state.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 corepack enable                                          # Make pnpm available through Node's package-manager shim.
@@ -243,7 +262,8 @@ cd "$HOME/src/launchpad-hub"                             # Enter the workspace f
 
 `--force` on `New-Item`/`-Force` and `mkdir -p` make rerunning the lab safe. The pinned pnpm version prevents lockfile churn.
 
-These commands set the git behavior needed for reproducible collaboration and agent review. They also create, copy, or configure a real local file/path used by the tool.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```powershell
 git config --global init.defaultBranch main              # Make new repositories start on the protected branch name.
@@ -251,14 +271,16 @@ git config --global pull.rebase true                     # Replay local commits 
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force # Allow this user's local PowerShell automation.
 ```
 
-These commands set the Git behavior needed for reproducible collaboration and agent review.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git config --global init.defaultBranch main              # Standardize the initial branch name.
 git config --global pull.rebase true                     # Keep pulls linear and easier for agent review.
 ```
 
-These commands copy the cumulative course repository and its history onto this computer. They also inspect or prepare the local machine so the next operation has a known path and state. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git clone https://github.com/STEVOHCODER/ai-native-software-masterclass.git # Copy the cumulative course repository and history.
@@ -266,13 +288,15 @@ cd ai-native-software-masterclass                       # Enter the cloned proje
 pnpm install --frozen-lockfile                            # Reproduce the exact dependency graph without editing the lockfile.
 ```
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the .\chapter-01-local-sandbox-wiring\environment-setup.ps1 step and verify its result before continuing.
 
 ```powershell
 .\chapter-01-local-sandbox-wiring\environment-setup.ps1 -Json # Run the Windows audit and emit machine-readable results.
 ```
 
-These commands run a node.js script or diagnostic using the project runtime. They also run python for an isolated utility, configuration check, or environment verification. They also inspect or change version-controlled project state in an auditable way. They also inspect or operate the local container runtime used by the course. They also use the authenticated github cli for repository, pull-request, or release operations.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 node --version                                           # Prove the JavaScript runtime is on PATH.
@@ -282,7 +306,8 @@ docker version                                           # Prove the Docker clie
 gh --version                                             # Prove GitHub CLI is available for later agent workflows.
 ```
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also inspect or change version-controlled project state in an auditable way. They also run python for an isolated utility, configuration check, or environment verification.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 pnpm run validate:environment                            # Execute the repository's cross-platform prerequisite check.

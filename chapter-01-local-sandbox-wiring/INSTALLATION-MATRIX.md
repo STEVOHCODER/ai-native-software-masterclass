@@ -19,7 +19,8 @@ The shell must resolve one working executable for each row:
 
 Windows:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```powershell
 where.exe node
@@ -30,7 +31,8 @@ Get-Command node -All
 
 macOS/Linux:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also send one deterministic protocol request to the process so its response can be verified.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 command -v node
@@ -52,13 +54,15 @@ If a new installation is not visible, open a new terminal. Do not edit machine P
 
 Inspect before editing:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the Test-Path step and verify its result before continuing.
 
 ```powershell
 Test-Path $PROFILE; if (Test-Path $PROFILE) { Get-Content $PROFILE }
 ```
 
-These commands evaluate a local prerequisite or branch condition before continuing the setup.
+
+Run these commands to complete the test step and verify its result before continuing.
 
 ```bash
 test -f ~/.zshrc && sed -n '1,160p' ~/.zshrc

@@ -6,7 +6,8 @@ Complete Labs 01–04. Install Docker and choose local services first; hosted Su
 
 ## Installation
 
-These commands download the pinned container image before creating a reproducible local service.
+
+Run these Docker commands to build, start, inspect, or diagnose the reproducible local service used by this lab.
 
 ```bash
 docker pull postgres:17-alpine
@@ -15,13 +16,15 @@ docker pull mongo:8
 
 Supabase CLI:
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Supabase.CLI
 ```
 
-These commands install the required developer tool through Homebrew on macOS.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install supabase/tap/supabase
@@ -29,13 +32,15 @@ brew install supabase/tap/supabase
 
 MongoDB tools:
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install MongoDB.Server MongoDB.Shell
 ```
 
-These commands install the required developer tool through Homebrew on macOS.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 brew install mongosh mongodb-atlas
@@ -43,7 +48,8 @@ brew install mongosh mongodb-atlas
 
 ## Configuration
 
-These commands start the local container with explicit name, environment, port, and lifecycle settings. They also set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```bash
 docker run --name launchpad-postgres --detach --env POSTGRES_USER=launchpad --env POSTGRES_PASSWORD=local-only-password --env POSTGRES_DB=launchpad --publish 5432:5432 postgres:17-alpine
@@ -54,7 +60,8 @@ export MONGODB_URI=mongodb://127.0.0.1:27017/launchpad
 
 PowerShell:
 
-These commands start the local container with explicit name, environment, port, and lifecycle settings. They also set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```powershell
 docker run --name launchpad-postgres --detach --env POSTGRES_USER=launchpad --env POSTGRES_PASSWORD=local-only-password --env POSTGRES_DB=launchpad --publish 5432:5432 postgres:17-alpine
@@ -67,7 +74,8 @@ $env:MONGODB_URI = 'mongodb://127.0.0.1:27017/launchpad'
 
 Apply the schema:
 
-These commands use the database CLI to apply, inspect, or verify state in the selected environment.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```bash
 psql "$DATABASE_URL" --set ON_ERROR_STOP=1 --file chapter-05-database-architecture-state/supabase-schema.sql
@@ -96,7 +104,8 @@ Postgres contains `profiles` with RLS enabled. MongoDB contains one telemetry do
 
 ## Verification
 
-These commands use the database CLI to apply, inspect, or verify state in the selected environment.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```bash
 psql "$DATABASE_URL" -c "select count(*) from public.profiles;"
@@ -119,7 +128,8 @@ The learner can start both services, apply the relational schema, insert/read te
 
 ## Command annotations: what and why
 
-These commands download the pinned container image before creating a reproducible local service. They also start the local container with explicit name, environment, port, and lifecycle settings. They also set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```bash
 docker pull postgres:17-alpine                         # Download the pinned PostgreSQL image before creating a container.
@@ -132,7 +142,8 @@ export MONGODB_URI=mongodb://127.0.0.1:27017/launchpad # Tell CLI/tools where th
 
 PowerShell uses the same container flags but stores environment variables in the current process:
 
-These commands start the local container with explicit name, environment, port, and lifecycle settings. They also set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to start the local container service with a fixed name, credentials, database, and published port so later labs can connect to it.
 
 ```powershell
 docker run --name launchpad-postgres --detach --env POSTGRES_USER=launchpad --env POSTGRES_PASSWORD=local-only-password --env POSTGRES_DB=launchpad --publish 5432:5432 postgres:17-alpine # Create the relational service.
@@ -141,7 +152,8 @@ $env:DATABASE_URL = 'postgresql://launchpad:local-only-password@127.0.0.1:5432/l
 $env:MONGODB_URI = 'mongodb://127.0.0.1:27017/launchpad' # Configure the Mongo client for this shell.
 ```
 
-These commands use the database CLI to apply, inspect, or verify state in the selected environment.
+
+Run these database CLI commands to apply the schema or migration and verify that the expected persistent state exists.
 
 ```bash
 psql "$DATABASE_URL" --set ON_ERROR_STOP=1 --file chapter-05-database-architecture-state/supabase-schema.sql # Apply every SQL statement and stop at the first error.

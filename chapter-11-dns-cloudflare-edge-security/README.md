@@ -25,7 +25,8 @@ Use low TTL during migration, then raise it after verification. Do not publish d
 6. Add HSTS only after every required subdomain works over HTTPS.
 7. Verify:
 
-These commands fetch the requested https resource or exercise the http endpoint while failing visibly on errors. They also inspect dns or tls evidence at the network boundary rather than assuming it is correct.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --head --location https://example.com
@@ -49,7 +50,8 @@ Restrict origin firewalls to Cloudflare IP ranges, validate the original host, c
 
 Install Cloudflare's CLI/API tooling through the official release channel, then verify:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the cloudflared step and verify its result before continuing.
 
 ```bash
 cloudflared --version
@@ -59,7 +61,8 @@ cloudflared tunnel list
 
 Windows:
 
-These commands install the selected windows package so the required tool is available to later labs. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 winget install Cloudflare.cloudflared
@@ -70,7 +73,8 @@ Create a scoped API token in the Cloudflare dashboard. Store it as `CLOUDFLARE_A
 
 ## 7. DNS verification commands
 
-These commands inspect dns or tls evidence at the network boundary rather than assuming it is correct. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 dig +short example.com A
@@ -81,7 +85,8 @@ curl --fail --silent --show-error --resolve api.example.com:443:ORIGIN_IP https:
 
 Windows:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state.
+
+Run these commands to inspect DNS, TLS, or network connectivity directly and compare the observed result with the intended configuration.
 
 ```powershell
 Resolve-DnsName example.com

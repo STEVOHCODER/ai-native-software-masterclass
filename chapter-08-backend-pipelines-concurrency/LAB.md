@@ -6,7 +6,8 @@ Complete Labs 01–07 and have local Postgres running from Lab 05. Start with th
 
 ## Installation
 
-These commands install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -14,14 +15,16 @@ pnpm install --frozen-lockfile
 
 ## Configuration
 
-These commands set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to complete the $env:PORT step and verify its result before continuing.
 
 ```powershell
 $env:PORT = '3000'
 $env:ALLOWED_ORIGIN = 'http://localhost:5173'
 ```
 
-These commands set a process environment variable so the next command receives explicit configuration.
+
+Run these commands to load the required configuration into the current process so the following tool can authenticate and use the selected service.
 
 ```bash
 export PORT=3000
@@ -41,7 +44,8 @@ The stale __v update must return 409 and no lost update is acceptable.
 
 Start the API:
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm start
@@ -49,7 +53,8 @@ pnpm start
 
 Exercise normal and invalid requests:
 
-These commands fetch the requested HTTPS resource or exercise the HTTP endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 curl --fail http://127.0.0.1:3000/health
@@ -59,7 +64,8 @@ curl --request PATCH http://127.0.0.1:3000/api/progress/course-progress --header
 
 PowerShell:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```powershell
 $body = @{ progress = 20; __v = 0 } | ConvertTo-Json
@@ -72,7 +78,8 @@ The first write succeeds and increments `__v`. The second stale write returns `4
 
 ## Verification
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run test:concurrency
@@ -95,7 +102,8 @@ The API is reachable, invalid requests fail safely, concurrent stale writes are 
 
 ## Command annotations: what and why
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also use powershell to download or call the service with explicit error behavior.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```powershell
 $env:PORT = '3000'                                      # Set the HTTP port for this PowerShell process.
@@ -105,7 +113,8 @@ $body = @{ progress = 20; __v = 0 } | ConvertTo-Json    # Serialize a typed-look
 Invoke-RestMethod http://127.0.0.1:3000/api/progress/course-progress -Method Patch -ContentType 'application/json' -Headers @{ Origin = 'http://localhost:5173' } -Body $body # Send an authenticated-origin-shaped update.
 ```
 
-These commands set a process environment variable so the next command receives explicit configuration. They also run the project tool through the configured package-manager/runtime workflow. They also fetch the requested https resource or exercise the http endpoint while failing visibly on errors.
+
+Run these commands to make the network request, fail visibly on HTTP errors, and inspect the returned service or deployment response.
 
 ```bash
 export PORT=3000                                       # Configure the POSIX shell's server port.

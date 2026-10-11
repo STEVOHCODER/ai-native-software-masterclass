@@ -8,7 +8,8 @@ Learners will operate terminal agents and IDE assistants as controlled engineeri
 
 Install each tool only if it fits the learner's workflow. Do not install every agent on a production workstation.
 
-These commands install the selected Windows package so the required tool is available to later labs.
+
+Run these commands in PowerShell to verify that WinGet is available and install the Windows development tools used in the course.
 
 ```powershell
 # Windows package-manager examples
@@ -16,7 +17,8 @@ winget install --id GitHub.Copilot
 winget install --id Anthropic.Claude
 ```
 
-These commands install the required developer tool through homebrew on macos. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands in the macOS shell to configure Homebrew and install the runtimes and utilities required by the course.
 
 ```bash
 # macOS/Linux package-manager examples
@@ -67,7 +69,8 @@ Use local embeddings for source indexing when privacy matters. Use cloud models 
 
 ## 5. Agent review lab
 
-These commands create or select an isolated branch so experimental work does not modify the shared branch. They also inspect or change version-controlled project state in an auditable way. They also run the project tool through the configured package-manager/runtime workflow.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 git switch -c lab/agent-controlled-change
@@ -98,14 +101,16 @@ Run [`LAB.md`](LAB.md) to install and direct an agent on a bounded task. Command
 
 Installer names and package IDs change. Confirm each official source before execution, then verify:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```powershell
 Get-Command claude, codex, opencode, gh -ErrorAction SilentlyContinue
 claude --version; codex --version; opencode --version; gh --version
 ```
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 command -v claude codex opencode gh
@@ -124,7 +129,8 @@ claude --version; codex --version; opencode --version; gh --version
 
 Windows setup:
 
-These commands create, copy, or configure a real local file/path used by the tool. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the New-Item step and verify its result before continuing.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\.claude", "$HOME\.codex", "$HOME\.config\opencode", "$HOME\.continue" | Out-Null
@@ -136,7 +142,8 @@ code --install-extension RooVeterinaryInc.roo-cline
 
 macOS/Linux setup:
 
-These commands inspect or prepare the local machine so the next operation has a known path and state. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to complete the mkdir step and verify its result before continuing.
 
 ```bash
 mkdir -p ~/.claude ~/.codex ~/.config/opencode ~/.continue
@@ -148,13 +155,15 @@ code --install-extension RooVeterinaryInc.roo-cline
 
 Edit files manually in VS Code, or write deterministic JSON/TOML with PowerShell/Python. Prefer manual review after generation:
 
-These commands read bounded diagnostic output so failures can be investigated without dumping an unbounded log.
+
+Run these commands to complete the Get-Content step and verify its result before continuing.
 
 ```powershell
 Get-Content "$HOME\.continue\config.json" | ConvertFrom-Json | ConvertTo-Json -Depth 20
 ```
 
-These commands run Python for an isolated utility, configuration check, or environment verification.
+
+Run these commands to complete the python3 step and verify its result before continuing.
 
 ```bash
 python3 -m json.tool ~/.continue/config.json >/dev/null

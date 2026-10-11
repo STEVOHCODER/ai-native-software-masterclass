@@ -6,7 +6,8 @@ Complete Lab 06. Use an agent that supports MCP configuration. This lab uses the
 
 ## Installation
 
-These commands install project dependencies using the selected package manager and its lockfile policy.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -42,7 +43,8 @@ Create the parent folder, edit the file in a JSON editor, save, and fully restar
 
 Start the server manually:
 
-These commands execute this lab step; the surrounding explanation defines its expected result and reason for inclusion.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
@@ -50,7 +52,8 @@ MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-s
 
 Send protocol requests from another terminal:
 
-These commands send one deterministic protocol request to the process so its response can be verified.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
@@ -67,7 +70,8 @@ The agent discovers `read_documentation`, returns the requested chapter content,
 
 Attempt traversal and confirm a structured error:
 
-These commands send one deterministic protocol request to the process so its response can be verified.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 printf '%s\n' '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"read_documentation","arguments":{"path":"../.env"}}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts
@@ -88,7 +92,8 @@ The learner can register, restart, discover, use, verify, and safely remove the 
 
 ## Command annotations: what and why
 
-These commands install project dependencies using the selected package manager and its lockfile policy. They also execute this lab step; the surrounding explanation defines its expected result and reason for inclusion. They also send one deterministic protocol request to the process so its response can be verified.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm install --frozen-lockfile                            # Install the exact MCP server and TypeScript toolchain.

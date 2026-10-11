@@ -12,7 +12,8 @@ Write a one-page brief: user, painful workflow, measurable outcome, non-goals, d
 
 ### 00:20–00:50 — Bootstrap
 
-These commands run the project tool through the configured package-manager/runtime workflow. They also create or select an isolated branch so experimental work does not modify the shared branch. They also install project dependencies using the selected package manager and its lockfile policy.
+
+Run these Git and GitHub CLI commands to create an auditable change, inspect its status, and apply the repository workflow required by this lab.
 
 ```bash
 pnpm create vite capstone-web --template react-ts
@@ -29,7 +30,8 @@ Implement one authenticated flow from form input to validated API request, datab
 
 ### 01:30–02:00 — Harden and verify
 
-These commands run the project tool through the configured package-manager/runtime workflow.
+
+Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
 pnpm run lint
