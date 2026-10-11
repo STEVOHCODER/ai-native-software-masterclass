@@ -12,6 +12,7 @@ const requiredSections = [
   '## Verification',
   '## Troubleshooting',
   '## Completion criteria',
+  '## Command annotations: what and why',
 ];
 
 const root = path.resolve(__dirname, '..');
