@@ -13,6 +13,7 @@
     "test": "node --test chapter-09-automated-verification-testing/*.test.js",
     "build": "tsc --noEmit",
     "validate:environment": "node scripts/validate-environment.js",
+    "validate:labs": "node scripts/validate-labs.js",
     "security:audit": "npm audit --audit-level=high",
     "self-correct": "node chapter-09-automated-verification-testing/self-correct.js",
     "test:concurrency": "node --test chapter-09-automated-verification-testing/concurrency.test.js",

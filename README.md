@@ -34,3 +34,25 @@ Copy `.env.example` to `.env` for local work. The example contains names only; i
 
 Every chapter uses the same loop: explain the architecture, install the tool, implement a bounded slice, run a failure exercise, inspect the diff, and record evidence. Learners should be able to explain why a choice was made, reproduce it on a clean machine, and roll it back.
 
+## Practical lab contract
+
+Each chapter contains a `LAB.md`. A lab is not complete because a command is printed; it is complete only when the learner can perform the operation and show evidence:
+
+| Evidence | Meaning |
+|---|---|
+| Starting point | The learner knows what must already exist |
+| Installation | The tool is installed or the account/service is reached |
+| Configuration | A real file path, setting, or environment variable is created |
+| Execution | The learner runs the tool or completes the UI action |
+| Expected result | The observable success state is defined |
+| Verification | A command, test, health check, or screenshot proves it |
+| Troubleshooting | A failure can be diagnosed without guessing |
+| Completion criteria | The learner knows when to proceed |
+
+The project is cumulative. Labs 01–04 establish the workstation, AI gateway, agent, and Git controls. Labs 05–08 build data, frontend, MCP, and backend capabilities. Labs 09–12 test, deploy, secure, and package the same product. When an external account, paid API, domain, or cloud service is unavailable, the lab provides a local or read-only fallback and labels the unverified portion.
+
+Validate the lab structure before publishing course material:
+
+```bash
+node scripts/validate-labs.js
+```
