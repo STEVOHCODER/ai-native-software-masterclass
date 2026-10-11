@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
-    [switch]$ApplyUserPolicy
+    [switch]$ApplyUserPolicy,
+    [switch]$Json
 )
 
 Set-StrictMode -Version Latest
@@ -25,12 +26,22 @@ $report = [ordered]@{
     TlsProtocol = $tls.ToString()
     Node = Get-CommandPath -Name 'node'
     Npm = Get-CommandPath -Name 'npm'
+    NpmCmd = Get-CommandPath -Name 'npm.cmd'
     Pnpm = Get-CommandPath -Name 'pnpm'
+    Corepack = Get-CommandPath -Name 'corepack'
     Python = Get-CommandPath -Name 'python'
+    Pip = Get-CommandPath -Name 'pip'
     Git = Get-CommandPath -Name 'git'
     Scoop = Get-CommandPath -Name 'scoop'
+    Winget = Get-CommandPath -Name 'winget'
+    Choco = Get-CommandPath -Name 'choco'
+    Docker = Get-CommandPath -Name 'docker'
+    Gh = Get-CommandPath -Name 'gh'
     PathEntries = ($env:Path -split ';' | Where-Object { $_ -and (Test-Path $_) })
 }
 
-$report | ConvertTo-Json -Depth 4
-
+if ($Json) {
+    $report | ConvertTo-Json -Depth 4
+} else {
+    $report.GetEnumerator() | ForEach-Object { '{0}: {1}' -f $_.Key, $_.Value }
+}

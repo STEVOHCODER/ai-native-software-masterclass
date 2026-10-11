@@ -156,3 +156,65 @@ pnpm run test:concurrency
 
 Run `.\environment-setup.ps1 -Json` on Windows or repeat the equivalent commands on macOS/Linux. Record the output in your lesson notes, not in Git. The environment is ready only when Node, package manager, Python, Git, TLS, and repository path checks all pass.
 
+## 8. Installer decision matrix
+
+`winget` is Microsoft's package manager and is normally delivered through **App Installer** on supported Windows 10/11 systems. Confirm it before using it:
+
+```powershell
+Get-Command winget
+winget --info
+```
+
+If it is missing, update **App Installer** from Microsoft Store, or use one of the independent paths below.
+
+| Platform | Node.js | Python | pnpm | Best use |
+|---|---|---|---|---|
+| Windows | `winget`, Scoop, Chocolatey, official MSI, `nvm-windows` | `winget`, Scoop, Chocolatey, official installer | Corepack or `npm install --global pnpm` | corporate Windows |
+| macOS | Homebrew, official pkg, `nvm`, `fnm` | Homebrew, official pkg, `pyenv` | Corepack or Homebrew | Apple Silicon/Intel |
+| Linux | distro package, NodeSource, `nvm`, `fnm` | apt/dnf, `pyenv` | Corepack or npm | CI and servers |
+
+Alternative Windows installations:
+
+```powershell
+# Chocolatey (PowerShell as Administrator)
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+irm https://community.chocolatey.org/install.ps1 | iex
+choco install nodejs-lts python git jq -y
+
+# Scoop (non-administrator)
+scoop install nodejs-lts python git jq
+
+# Official Node installer
+# Download the current LTS x64 MSI from https://nodejs.org/en/download,
+# then run the downloaded file from its real path:
+Start-Process msiexec.exe -Wait -ArgumentList '/i', '.\node-v22.14.0-x64.msi'
+```
+
+Prefer a version manager when learners need multiple projects:
+
+```powershell
+# fnm via winget
+winget install Schniz.fnm
+fnm env --use-on-cd | Out-String | Invoke-Expression
+fnm install 22
+fnm use 22
+```
+
+```bash
+# macOS/Linux with nvm
+curl --proto '=https' --tlsv1.2 --fail --silent --show-error https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 22
+nvm alias default 22
+corepack enable
+```
+
+The course uses Corepack-pinned pnpm where possible. When Corepack is unavailable:
+
+```powershell
+npm install --global pnpm@10.6.2
+```
+
+```bash
+sudo npm install --global pnpm@10.6.2
+```
