@@ -78,3 +78,28 @@ printf '%s\n' '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"r
 
 The learner can register, restart, discover, use, verify, and safely remove the MCP server without granting arbitrary shell or production database access.
 
+## Command annotations: what and why
+
+```bash
+pnpm install --frozen-lockfile                            # Install the exact MCP server and TypeScript toolchain.
+MCP_DOCS_ROOT="$PWD" pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Start the server with the repository as its allowed root.
+printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Send the protocol handshake and print the server capabilities.
+printf '%s\n' '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Ask the server to advertise discoverable tools.
+printf '%s\n' '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"read_documentation","arguments":{"path":"../.env"}}}' | pnpm exec tsx chapter-07-mcp-extensions-custom-skills/mcp-server.ts # Attempt traversal and prove the path boundary rejects it.
+```
+
+`MCP_DOCS_ROOT` is the trust boundary. `pnpm exec` runs the repository's selected TypeScript executor. `printf` produces one JSON-RPC line; the pipe feeds that line to the server. The traversal request is intentionally negative: a secure integration must demonstrate failure as well as success.
+
+```json
+{
+  "mcpServers": {
+    "launchpad-docs": {
+      "command": "pnpm",
+      "args": ["exec", "tsx", "chapter-07-mcp-extensions-custom-skills/mcp-server.ts"],
+      "env": { "MCP_DOCS_ROOT": "${workspaceFolder}" }
+    }
+  }
+}
+```
+
+The host launches `pnpm`, passes fixed arguments, substitutes the workspace root, and then must be restarted so it reloads the registry. The agent's request to read a chapter proves the complete discovery-to-tool-result path.

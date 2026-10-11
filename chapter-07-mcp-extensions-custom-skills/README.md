@@ -94,3 +94,7 @@ For Claude Desktop on Windows, the usual user configuration is `%APPDATA%\\Claud
 ## 7. Plugin safety
 
 Before enabling a plugin, record publisher, repository, commit/tag, requested permissions, network destinations, environment variables, filesystem paths, and update mechanism. Start with no credentials and a disposable project. A frontend plugin should not be able to read `.env`, modify DNS, run migrations, or push to GitHub.
+
+## Learn by executing
+
+Run [`LAB.md`](LAB.md) to register, restart, discover, use, and remove an MCP integration. Command comments explain the JSON-RPC flow; [`EXPLAINED.md`](EXPLAINED.md) explains the trust boundary.
