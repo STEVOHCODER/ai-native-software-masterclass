@@ -71,3 +71,73 @@ git status --short
 ```
 
 Reject any agent output that lacks a test result, introduces an unreviewed dependency, or changes files outside the task boundary.
+
+## 6. Installation matrix
+
+| Agent | Windows | macOS/Linux | Editor/Desktop |
+|---|---|---|---|
+| Claude Code | `irm https://claude.ai/install.ps1 \| iex` | `curl -fsSL https://claude.ai/install.sh \| bash` | Claude Desktop where available |
+| Codex CLI | `npm install --global @openai/codex` | same | VS Code terminal |
+| OpenCode | `npm install --global opencode-ai` | same | terminal/editor task runner |
+| OpenClaw | official installer/release | official installer/release | agent host |
+| GitHub Copilot | `winget install GitHub.Copilot` or VS Code extension | VS Code/JetBrains extension | GitHub Copilot Chat/CLI |
+| Cline | VS Code Marketplace | VS Code Marketplace | VS Code |
+| Roo Code | VS Code Marketplace | VS Code Marketplace | VS Code |
+| Continue | VS Code/JetBrains Marketplace | VS Code/JetBrains Marketplace | `~/.continue/config.json` |
+| Kilo | official extension/package | official extension/package | editor extension |
+
+Installer names and package IDs change. Confirm each official source before execution, then verify:
+
+```powershell
+Get-Command claude, codex, opencode, gh -ErrorAction SilentlyContinue
+claude --version; codex --version; opencode --version; gh --version
+```
+
+```bash
+command -v claude codex opencode gh
+claude --version; codex --version; opencode --version; gh --version
+```
+
+## 7. Per-machine configuration
+
+| Agent | Windows config | macOS/Linux config |
+|---|---|---|
+| Claude Code | `%USERPROFILE%\\.claude\\settings.json` | `~/.claude/settings.json` |
+| Codex CLI | `%USERPROFILE%\\.codex\\config.toml` | `~/.codex/config.toml` |
+| OpenCode | `%USERPROFILE%\\.config\\opencode\\opencode.json` | `~/.config/opencode/opencode.json` |
+| Continue | `%USERPROFILE%\\.continue\\config.json` | `~/.continue/config.json` |
+| VS Code | `%APPDATA%\\Code\\User\\settings.json` | `~/Library/Application Support/Code/User/settings.json` or `~/.config/Code/User/settings.json` |
+
+Windows setup:
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.claude", "$HOME\.codex", "$HOME\.config\opencode", "$HOME\.continue" | Out-Null
+Copy-Item .\chapter-03-coding-agents-ide-control\continue-config.json "$HOME\.continue\config.json"
+code --install-extension continue.continue
+code --install-extension saoudrizwan.claude-dev
+code --install-extension RooVeterinaryInc.roo-cline
+```
+
+macOS/Linux setup:
+
+```bash
+mkdir -p ~/.claude ~/.codex ~/.config/opencode ~/.continue
+cp chapter-03-coding-agents-ide-control/continue-config.json ~/.continue/config.json
+code --install-extension continue.continue
+code --install-extension saoudrizwan.claude-dev
+code --install-extension RooVeterinaryInc.roo-cline
+```
+
+Edit files manually in VS Code, or write deterministic JSON/TOML with PowerShell/Python. Prefer manual review after generation:
+
+```powershell
+Get-Content "$HOME\.continue\config.json" | ConvertFrom-Json | ConvertTo-Json -Depth 20
+```
+
+```bash
+python3 -m json.tool ~/.continue/config.json >/dev/null
+```
+
+## 8. Agent rules file
+
+Create `AGENTS.md` or the vendor-equivalent in the repository root. It should state the stack, commands, allowed directories, secret policy, migration policy, test expectations, and commit rules. Keep global settings generic; keep repository instructions versioned with the code.
