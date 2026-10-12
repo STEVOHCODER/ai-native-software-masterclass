@@ -8,9 +8,9 @@
   },
   "scripts": {
     "start": "node chapter-08-backend-pipelines-concurrency/server.js",
-    "lint": "eslint chapter-04-git-version-control-safety chapter-08-backend-pipelines-concurrency chapter-09-automated-verification-testing scripts --max-warnings=0",
+    "lint": "eslint chapter-00-ai-first-hour chapter-04-git-version-control-safety chapter-08-backend-pipelines-concurrency chapter-09-automated-verification-testing scripts --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "test": "node --test chapter-09-automated-verification-testing/*.test.js",
+    "test": "node --test chapter-00-ai-first-hour/*.test.js chapter-09-automated-verification-testing/*.test.js",
     "build": "tsc --noEmit",
     "validate:environment": "node scripts/validate-environment.js",
     "validate:labs": "node scripts/validate-labs.js",
@@ -19,6 +19,8 @@
     "security:audit": "npm audit --audit-level=high",
     "self-correct": "node chapter-09-automated-verification-testing/self-correct.js",
     "test:concurrency": "node --test chapter-09-automated-verification-testing/concurrency.test.js",
+    "agents:audit": "node -e \"console.log(require('./chapter-00-ai-first-hour/agent-clis').auditAgents())\"",
+    "ai:ping": "node -e \"const {resolveProvider,requestCompletion}=require('./chapter-00-ai-first-hour/ai-request'); const p=resolveProvider(); if(!p){console.log('No key set - see chapter-00 LAB.md'); process.exit(0);} requestCompletion({provider:p,prompt:'Reply with exactly: AI ONLINE',maxTokens:16}).then(t=>console.log('model:',p.model,'->',t));\"",
     "checkpoint": "node chapter-04-git-version-control-safety/agent-safety-commit.js --once"
   },
   "dependencies": {

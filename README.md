@@ -1,9 +1,10 @@
 # Launchpad Hub Masterclass
 
-Launchpad Hub is a twelve-chapter curriculum for building and launching AI-assisted websites, applications, APIs, internal tools, and software products. Each chapter contains an executable artifact, a teaching narrative, a lab, and a verification gate.
+Launchpad Hub is a thirteen-chapter curriculum for building and launching AI-assisted websites, applications, APIs, internal tools, and software products. Each chapter contains an executable artifact, a teaching narrative, a lab, and a verification gate.
 
 ## Course path
 
+0. Make a real model answer and audit your coding agents.
 1. Wire a safe local workstation.
 2. Build a multi-provider AI gateway.
 3. Control coding agents and IDE extensions.
@@ -17,18 +18,20 @@ Launchpad Hub is a twelve-chapter curriculum for building and launching AI-assis
 11. Configure DNS, TLS, WAF, and edge caching.
 12. Launch, audit, package, and sell the system.
 
+Chapter 00 comes first on purpose: it proves the learner can reach a model and run at least one coding agent before any tooling is trusted with their code.
+
 ## Fast start
 
 
 Run these commands to install or execute the project tooling, then verify that the local implementation produces the expected result.
 
 ```bash
-pnpm install --frozen-lockfile
-pnpm run validate:environment
-pnpm run lint
-pnpm run typecheck
-pnpm run test
-pnpm run build
+npm ci
+npm run validate:environment
+npm run lint
+npm run typecheck
+npm run test
+npm run build
 ```
 
 Copy `.env.example` to `.env` for local work. The example contains names only; it never contains credentials.

@@ -15,13 +15,15 @@ const requiredSections = [
   '## Command annotations: what and why',
 ];
 
+const EXPECTED_CHAPTERS = 13; // Chapter 00 was added ahead of the workstation chapters; keep this count honest.
+
 const root = path.resolve(__dirname, '..');
 const chapters = fs.readdirSync(root, { withFileTypes: true })
   .filter((entry) => entry.isDirectory() && /^chapter-\d{2}-/.test(entry.name))
   .sort((left, right) => left.name.localeCompare(right.name));
 
-if (chapters.length !== 12) {
-  throw new Error(`Expected 12 chapters, found ${chapters.length}`);
+if (chapters.length !== EXPECTED_CHAPTERS) {
+  throw new Error(`Expected ${EXPECTED_CHAPTERS} chapters, found ${chapters.length}`);
 }
 
 for (const chapter of chapters) {

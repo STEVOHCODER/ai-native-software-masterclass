@@ -6,6 +6,7 @@ export default [
       globals: {
         __dirname: 'readonly',
         console: 'readonly',
+        fetch: 'readonly', // Node 22+ provides fetch globally; chapter 00 relies on it to avoid an SDK dependency.
         module: 'readonly',
         process: 'readonly',
         require: 'readonly',
